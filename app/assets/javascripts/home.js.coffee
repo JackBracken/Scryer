@@ -9,4 +9,16 @@ $(->
   $("[name='search[rating][]']").chosen()
   $("[name='search[sort_by]']").chosen()
   $("[name='search[order_by]']").chosen()
+
+  $('#advanced_search :checkbox').click ->
+      elem = $(this)
+
+      label_elem = $("label[for='"+elem.attr("name")+"']")
+      label = label_elem.data("type")
+      if (elem.is(':checked'))
+        label = "Excluded " + label
+      else
+        label = "Included " + label
+
+      label_elem.text(label)
 )
