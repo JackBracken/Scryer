@@ -10,7 +10,6 @@ class HomeController < ApplicationController
   def search
     @search = params[:search]
     @search_results = @@scryer.search(@search)
-    @results = @search_results.results
-    puts @results
+    @results = Kaminari.paginate_array(@search_results.results, total_count: @search_results.hits).page(params[:page]).per(25)
   end
 end

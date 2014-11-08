@@ -1,22 +1,22 @@
 <div class="row marketing">
-  <% if @results.size > 0 %>
-      <h4 id="result_header" ng-show="hits > 0 && searched"><%= @results.size %> Results</h4>
-  <% else %>
-      <div class="alert alert-info" ng-show="hits == 0 && searched"><i class="fa fa-search"></i> No results found. Try another query.</div>
+  <% if has_results? %>
+      <h4 id="result_header"><%= number_with_delimiter(@search_results.hits) %> Stories Found</h4>
+      <!-- TODO: graphs/stats -->
+      <div>
+        <%= page_entries_info @results %>
+      </div>
+      <div>
+          <%= paginate @results %>
+      </div>
   <% end %>
-  <!--<div class="alert alert-danger" ng-show="errorMsg != '' && searched && errorMsg != null"><i class="fa fa-exclamation-circle"></i> {{errorMsg}}</div>-->
-  <!--<pagination total-items="hits"-->
-              <!--items-per-page="25"-->
-              <!--page="page"-->
-              <!--on-select-page="runQuery(page)"-->
-              <!--max-size="5"-->
-              <!--class="pagination-sm"-->
-              <!--boundary-links="true"-->
-              <!--rotate="false"-->
-              <!--ng-hide="!results.length"-->
-              <!--num-pages="numPages"></pagination>-->
-  <%= @search %>
-  <%= render :partial => 'home/story_result', :collection => @results || 'No results found' %>
+  <!--<%= @search %>-->
+  <%= (render :partial => 'home/story_result', :collection => @results) || (render :partial => 'empty') %>
+
+  <% if has_results? %>
+      <div>
+          <%= paginate @results %>
+      </div>
+  <% end %>
   <!--<pagination total-items="hits"-->
               <!--items-per-page="25"-->
               <!--page="page"-->
