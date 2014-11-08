@@ -1,6 +1,11 @@
 require 'json'
 
 namespace :scryer do
+  desc "Imports all data files"
+  task :import => [:import_characters, :import_categories, :import_languages] do
+
+  end
+
   desc "Imports character names from JSON file"
   task import_characters: :environment do
     JSON.parse(File.open('data/characters.json').read).each do |c|
