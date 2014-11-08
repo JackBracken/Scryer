@@ -27,6 +27,14 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
 
 gem 'faraday'
+gem 'faraday_middleware'
+gem 'rash'
+
+# Relative, updating dates
+gem 'rails-timeago', '~> 2.0'
+
+# Pagination
+gem 'kaminari'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -1,30 +1,32 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <a href="https://forums.darklordpotter.net/showthread.php?t={{item.meta.threadData.threadId}}"
-       class="pull-right" ng-if="item.meta.threadData">
-      DLP {{item.meta.threadData.votenum/item.meta.threadData.votetotal|number:2}} <i class="fa fa-star"></i></a>
+    <% if story_result.meta.thread_data %>
+        <a href="https://forums.darklordpotter.net/showthread.php?t=<%= story_result.meta.thread_data.thread_id %>"
+        class="pull-right" ng-if="item.meta.threadData">
+        DLP {{item.meta.threadData.votenum/item.meta.threadData.votetotal|number:2}} <i class="fa fa-star"></i></a>
+    <% end %>
     <h3 class="panel-title">
       <a
               target="_blank"
-              href="https://www.fanfiction.net{{item.url}}"
-              ng-mousedown="trackNavigate('story', item.title)">{{item.title}}</a>
+              href="https://www.fanfiction.net<%= story_result.url %>"
+              ng-mousedown="trackNavigate('story', item.title)"><%= story_result.title %></a>
       by
       <a
               target="_blank"
-              href="https://www.fanfiction.net{{item.authorUrl}}"
-              ng-mousedown="trackNavigate('author', item.author)">{{item.author}}</a></h3>
+              href="https://www.fanfiction.net<%= story_result.author_url %>"
+              ng-mousedown="trackNavigate('author', item.author)"><%= story_result.author %></a></h3>
   </div>
   <div class="panel-body">
-    {{item.summary}}
+    <%= story_result.summary %>
   </div>
   <div class="panel-footer">
     <span class="pull-right text-muted"
-          title="Updated: {{item.updated | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}"
-          am-time-ago="item.updated"></span>
-    <strong title="Published: {{item.published | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}">
-      {{item.meta.status}}
+          title="Updated: <%= Time.at(story_result.updated/1000) %>"
+          am-time-ago="item.updated"><%= timeago_tag Time.at(story_result.updated/1000), :limit => 2.years.ago %></span>
+    <strong title="Published: <%= Time.at(story_result.published/1000) %>">
+      <%= story_result.meta.status %>
     </strong>
-    - {{item.meta.rated}}
+    - <%= story_result.meta.rated %>
     - {{extract_names(item.meta.categories).join('/')}}
     - {{extract_names(item.meta.characters).join(', ')}}
     - {{item.meta.words|number}} words

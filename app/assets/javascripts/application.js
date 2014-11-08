@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require rails-timeago
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require chosen_v1.2.0/chosen.jquery
