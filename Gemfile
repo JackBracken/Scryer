@@ -15,8 +15,11 @@ gem 'autoprefixer-rails'
 gem 'bower-rails', '~> 0.9.1'
 gem 'font-awesome-rails'
 
-# JS libs
-#gem 'chosen-rails'
+# ElasticSearch
+#gem 'elasticsearch-model'
+#gem 'elasticsearch-rails'
+#gem 'elasticsearch-persistence'
+
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
