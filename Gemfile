@@ -65,6 +65,12 @@ gem 'devise-async'
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Memcached
+gem 'dalli'
+
+# Easy running
+gem 'foreman'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
