@@ -27,14 +27,14 @@
       <%= story_result.meta.status %>
     </strong>
     - <%= story_result.meta.rated %>
-    - {{extract_names(item.meta.categories).join('/')}}
-    - {{extract_names(item.meta.characters).join(', ')}}
-    - {{item.meta.words|number}} words
-    - {{item.meta.chapters|number}} chapters
-    - {{item.meta.reviews|number}} reviews
+    - <%= extract_names(story_result.meta.categories, '/') %>
+    - <%= extract_names(story_result.meta.characters, ', ') %>
+    - <%= number_with_delimiter(story_result.meta.words) %> words
+    - <%= number_with_delimiter(story_result.meta.chapters) %> chapters
+    - <%= number_with_delimiter(story_result.meta.reviews) %> reviews
     <span class="text-muted">
-      - {{item.meta.favs|number}} favorites
-      - {{item.meta.follows|number}} follows
+      - <%= number_with_delimiter(story_result.meta.favs) %> favorites
+      - <%= number_with_delimiter(story_result.meta.follows) %> follows
     </span>
   </div>
 </div>

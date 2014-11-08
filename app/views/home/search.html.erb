@@ -1,7 +1,10 @@
 <div class="row marketing">
-  <h4 id="result_header" ng-show="hits > 0 && searched">{{hits|number}} Results</h4>
-  <div class="alert alert-info" ng-show="hits == 0 && searched"><i class="fa fa-search"></i> No results found. Try another query.</div>
-  <div class="alert alert-danger" ng-show="errorMsg != '' && searched && errorMsg != null"><i class="fa fa-exclamation-circle"></i> {{errorMsg}}</div>
+  <% if @results.size > 0 %>
+      <h4 id="result_header" ng-show="hits > 0 && searched"><%= @results.size %> Results</h4>
+  <% else %>
+      <div class="alert alert-info" ng-show="hits == 0 && searched"><i class="fa fa-search"></i> No results found. Try another query.</div>
+  <% end %>
+  <!--<div class="alert alert-danger" ng-show="errorMsg != '' && searched && errorMsg != null"><i class="fa fa-exclamation-circle"></i> {{errorMsg}}</div>-->
   <!--<pagination total-items="hits"-->
               <!--items-per-page="25"-->
               <!--page="page"-->
