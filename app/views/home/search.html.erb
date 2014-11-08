@@ -3,10 +3,10 @@
       <h4 id="result_header"><%= number_with_delimiter(@search_results.hits) %> Stories Found</h4>
       <!-- TODO: graphs/stats -->
       <div>
-        <%= page_entries_info @results %>
+        <%= page_entries_info @paginate %>
       </div>
       <div>
-          <%= paginate @results %>
+          <%= paginate @paginate %>
       </div>
   <% end %>
   <!--<%= @search %>-->
@@ -14,7 +14,7 @@
 
   <% if has_results? %>
       <div>
-          <%= paginate @results %>
+          <%= paginate @paginate %>
       </div>
   <% end %>
   <!--<pagination total-items="hits"-->
