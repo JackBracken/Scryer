@@ -1,0 +1,27 @@
+<div class="row marketing">
+  <h4 id="result_header" ng-show="hits > 0 && searched">{{hits|number}} Results</h4>
+  <div class="alert alert-info" ng-show="hits == 0 && searched"><i class="fa fa-search"></i> No results found. Try another query.</div>
+  <div class="alert alert-danger" ng-show="errorMsg != '' && searched && errorMsg != null"><i class="fa fa-exclamation-circle"></i> {{errorMsg}}</div>
+  <!--<pagination total-items="hits"-->
+              <!--items-per-page="25"-->
+              <!--page="page"-->
+              <!--on-select-page="runQuery(page)"-->
+              <!--max-size="5"-->
+              <!--class="pagination-sm"-->
+              <!--boundary-links="true"-->
+              <!--rotate="false"-->
+              <!--ng-hide="!results.length"-->
+              <!--num-pages="numPages"></pagination>-->
+  <%= @search %>
+  <%= render :partial => 'home/story_result', :collection => @results || 'No results found' %>
+  <!--<pagination total-items="hits"-->
+              <!--items-per-page="25"-->
+              <!--page="page"-->
+              <!--on-select-page="runQuery(page)"-->
+              <!--max-size="5"-->
+              <!--class="pagination-sm"-->
+              <!--boundary-links="true"-->
+              <!--rotate="false"-->
+              <!--ng-hide="!results.length"-->
+              <!--num-pages="numPages"></pagination>-->
+</div>
