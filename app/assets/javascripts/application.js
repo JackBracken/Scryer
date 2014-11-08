@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require bootstrap-sprockets
+//= require bootstrap
+//= require chosen_v1.2.0/chosen.jquery
+//= require momentjs

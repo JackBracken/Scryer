@@ -3,12 +3,21 @@
 <head>
   <title>Scryer</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    controller_name, media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag    controller_name, media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %>" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
 
-<%= yield %>
+<%= render 'layouts/header' %>
+<div class="container">
+    <%= yield %>
+
+    <div class="footer">
+      <p>2014 DLP Group</p>
+    </div>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,215 @@
+<div id="search">
+  <h2><i class="fa fa-search text-muted"></i> Advanced Search</h2>
+  <%= form_tag(search_url, :method => :get) do |f| %>
+    <div class="row">
+      <div class="form-group col-lg-12">
+        <label for="search[title]">Title</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="icon-book"></i></span>
+          <input id="search[title]" name="query" type="text" class="form-control" placeholder="Title" autocomplete="on" autofocus="autofocus" ng-model="title"/>
+        </div>
+      </div>
+      <div class="form-group col-lg-12">
+        <label for="search[title]">Author</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="icon-book"></i></span>
+          <input id="search[author]" name="query" type="text" class="form-control" placeholder="Author" autocomplete="on" ng-model="author"/>
+        </div>
+      </div>
+      <div class="form-group col-lg-12">
+        <label for="search[title]">Summary</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="icon-book"></i></span>
+          <input id="search[summary]" name="query" type="text" class="form-control" placeholder="Summary keywords" autocomplete="on" ng-model="summary"/>
+        </div>
+        <span class="help-block">
+          <a rel="nofollow" href="http://lucene.apache.org/core/2_9_4/queryparsersyntax.html">Lucene Query Syntax</a>
+          e.g. <code>-slash +Harry timetravel</code> must not have slash, must contain Harry, may contain timetravel.
+          Operands may be combined with boolean operators (e.g. <code>harry OR (+AU -slash)</code>). Terms can be followed by
+          stars (<code>*</code>) for wildcards and fuzzy-searches done with <code>term~0.5</code> or a full phrase <code>"my phase"~</code>.
+          These apply to title, author, and summary fields.
+        </span>
+      </div>
+    </div>
+
+    <h3><i class="fa fa-archive text-muted"></i> Categories</h3>
+    <div class="row">
+      <div class="form-group col-lg-6">
+        <label for="search[category_required][]">Required Categories (max: 2)</label>
+        <select chosen
+                multiple
+                max-selected-options="2"
+                class="form-control"
+                name="search[category_required][]"
+                id="search[category_required][]">
+            <% Category.all.each do |c| %>
+              <option value="<%= c.id %>"><%= c.name %></option>
+            <% end %>
+        </select>
+      </div>
+      <div class="form-group col-lg-6">
+        <label for="search[category_optional][]">{{showIncludedExcluded(category_optional_exclude)}} Categories</label>
+        <div class="input-group">
+          <span class="input-group-addon">
+              <input type="checkbox"
+                     ng-model="category_optional_exclude"
+                     ng-init="category_optional_exclude=true"
+                     id="search[category_optional_exclude]"
+                      /> Exclude
+          </span>
+          <select chosen
+                  multiple
+                  class="form-control"
+                  name="search[category_optional][]"
+                  id="search[category_optional][]"
+                  ng-model="category_optional">
+                <% Category.all.each do |c| %>
+                  <option value="<%= c.id %>"><%= c.name %></option>
+                <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <h3><i class="fa fa-users text-muted"></i> Characters</h3>
+    <div class="row">
+      <div class="form-group col-lg-6">
+        <label for="search[character_required][]">Required Characters (max: 4)</label>
+        <select chosen
+                multiple
+                max-selected-options="4"
+                class="form-control"
+                ng-model="character_required"
+                ng-options="char.id as char.name for char in characters"
+                name="search[character_required][]"
+                id="search[character_required][]">
+          <% Character.all.each do |c| %>
+            <option value="<%= c.id %>"><%= c.name %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="form-group col-lg-6">
+        <label for="search[character_optional][]">{{showIncludedExcluded(character_optional_exclude)}} Characters</label>
+        <div class="input-group">
+          <span class="input-group-addon">
+              <input type="checkbox"
+                     ng-model="character_optional_exclude"
+                     ng-init="character_optional_exclude=true"
+                     name="search[character_optional_exclude]"
+                     id="search[character_optional_exclude]"
+                      /> Exclude
+          </span>
+          <select chosen
+                  multiple
+                  class="form-control"
+                  ng-model="character_optional"
+                  ng-options="char.id as char.name for char in characters"
+                  name="search[character_optional][]"
+                  id="search[character_optional][]">
+            <% Character.all.each do |c| %>
+              <option value="<%= c.id %>"><%= c.name %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <h3><i class="fa fa-filter text-muted"></i> Filters</h3>
+    <div class="row">
+      <div class="form-group col-lg-3">
+        <label for="search[language]">Language</label>
+        <select
+                chosen
+                ng-init="language='English'"
+                class="form-control"
+                name="language" id="language"
+                ng-model="language"
+                ng-options="key as value for (key, value) in languages"
+                name="search[language]"
+                id="search[language]">
+          <% Language.all.each do |l| %>
+            <option value="<%= l.id %>"><%= l.name %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="search[rating][]">Rating</label>
+        <select chosen
+                multiple
+                ng-init="rating=['k','k+','t','m']"
+                class="form-control"
+                name="search[rating][]"
+                id="search[rating][]"
+                ng-model="rating"
+                ng-options="key as value for (key , value) in ratings">
+          <option id="k" selected>K</option>
+          <option id="k+" selected>K+</option>
+          <option id="t" selected>T</option>
+          <option id="m" selected>M</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-3">
+        <label for="search[wordcount_lower]">Wordcount Minimum</label>
+        <input id="wordcount_lower" type="number" class="form-control" id="search[wordcount_lower]" placeholder="0" />
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="search[wordcount_upper]">Wordcount Maximum</label>
+        <input id="wordcount_upper" type="number" class="form-control" id="search[wordcount_upper]" placeholder="0" />
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="search[chapters_lower]">Chapters Minimum</label>
+        <input id="chapters_lower" type="number" class="form-control" id="search[chapters_lower]" placeholder="0" />
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="search[chapters_upper]">Chapters Maximum</label>
+        <input id="chapters_upper" type="number" class="form-control" id="search[chapters_upper]" placeholder="0" />
+      </div>
+    </div>
+
+    <h3><i class="fa fa-sort-alpha-asc text-muted"></i> Sorting</h3>
+    <div class="row">
+      <div class="form-group col-lg-3">
+        <label for="search[sort_by]">Sort By</label>
+        <select chosen
+                class="form-control"
+                ng-init="sort_by='_score'"
+                name="search[sort_by["
+                id="search[sort_by]"
+                ng-model="sort_by"
+                ng-options="key as value for (key , value) in sortings">
+          <option id="_score">Best Match</option>
+          <option id="updated">Updated</option>
+          <option id="published">Published</option>
+          <option id="meta.words">Wordcount</option>
+          <option id="meta.reviews">Reviews</option>
+          <option id="meta.favs">Favorites</option>
+          <option id="meta.follows">Follows</option>
+          <option id="_dlp">DLP Review Score</option>
+          <!--<option id="_popular">Popular & Recent</option>-->
+          <!--<option id="_flesch">Flesch Index (Reading level)</option>-->
+          <option id="meta.chapters">Chapters</option>
+        </select>
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="search[order_by]">Order</label>
+        <select chosen
+                disable_search_threshold="4"
+                ng-init="order_by='desc'"
+                class="form-control"
+                name="search[order_by]"
+                id="search[order_by]"
+                ng-model="order_by"
+                ng-options="key as value for (key , value) in orderings">
+          <option id="desc" selected>Descending</option>
+          <option id="asc">Ascending</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="submit" class="btn btn-success btn-group" value="Search" />
+      <!--<input type="reset" class="btn btn-info btn-group" value="Clear" />-->
+    </div>
+  <% end %>
+</div>
