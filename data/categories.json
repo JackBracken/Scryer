@@ -1,0 +1,86 @@
+[
+    {
+        "id": 6,
+        "name": "Adventure"
+    },
+    {
+        "id": 10,
+        "name": "Angst"
+    },
+    {
+        "id": 18,
+        "name": "Crime"
+    },
+    {
+        "id": 4,
+        "name": "Drama"
+    },
+    {
+        "id": 19,
+        "name": "Family"
+    },
+    {
+        "id": 14,
+        "name": "Fantasy"
+    },
+    {
+        "id": 21,
+        "name": "Friendship"
+    },
+    {
+        "id": 1,
+        "name": "General"
+    },
+    {
+        "id": 8,
+        "name": "Horror"
+    },
+    {
+        "id": 3,
+        "name": "Humor"
+    },
+    {
+        "id": 20,
+        "name": "Hurt/Comfort"
+    },
+    {
+        "id": 7,
+        "name": "Mystery"
+    },
+    {
+        "id": 9,
+        "name": "Parody"
+    },
+    {
+        "id": 5,
+        "name": "Poetry"
+    },
+    {
+        "id": 2,
+        "name": "Romance"
+    },
+    {
+        "id": 13,
+        "name": "Sci-Fi"
+    },
+    {
+        "id": 15,
+        "name": "Spiritual"
+    },
+    {
+        "id": 11,
+        "name": "Supernatural"
+    },
+    {
+        "id": 12,
+        "name": "Suspense"
+    },
+    {
+        "id": 16,
+        "name": "Tragedy"
+    },
+    {
+        "id": 17,
+        "name": "Western"
+    }
+]
