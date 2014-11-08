@@ -2,8 +2,8 @@
   <div class="panel-heading">
     <% if story_result.meta.thread_data %>
         <a href="https://forums.darklordpotter.net/showthread.php?t=<%= story_result.meta.thread_data.thread_id %>"
-        class="pull-right" ng-if="item.meta.threadData">
-        DLP {{item.meta.threadData.votenum/item.meta.threadData.votetotal|number:2}} <i class="fa fa-star"></i></a>
+        class="pull-right">
+        DLP <%= number_with_precision(vote(story_result.meta.thread_data), precision: 2) %> <i class="fa fa-star"></i></a>
     <% end %>
     <h3 class="panel-title">
       <a
