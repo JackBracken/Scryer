@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   establish_connection "#{Rails.env}_dlp"
 
   def is_admin?
-    usergroupid == 6
+    try(:usergroupid) == 6
   end
 
   def encrypted_password
