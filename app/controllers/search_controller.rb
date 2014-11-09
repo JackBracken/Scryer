@@ -2,8 +2,11 @@ require 'scryer/scryer_client'
 
 class SearchController < ApplicationController
   @@scryer = Scryer::Client.new
-
   def index
+
+  end
+
+  def omni
 
   end
 

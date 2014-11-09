@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'faq' => 'home#faq', :as => :faq
   get 'about' => 'home#about', :as => :about
   get 'search' => 'search#search', :as => :search
+  get 'omni' => 'search#omni'
 
   get '/404', :to => 'errors#not_found'
   get '/422', :to => 'errors#unacceptable'
