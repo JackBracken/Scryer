@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root 'home#index'
-  get 'search' => 'home#search', :as => :search
-  
+  root 'search#index'
+  get 'faq' => 'home#faq', :as => :faq
+  get 'about' => 'home#about', :as => :about
+  get 'search' => 'search#search', :as => :search
+
   get '/404', :to => 'errors#not_found'
   get '/422', :to => 'errors#unacceptable'
   get '/500', :to => 'errors#internal_error'
