@@ -14,6 +14,7 @@ gem 'autoprefixer-rails'
 # Bower
 gem 'bower-rails', '~> 0.9.1'
 gem 'font-awesome-rails'
+gem 'chosen-rails'
 
 # ElasticSearch
 #gem 'elasticsearch-model'

@@ -15,5 +15,5 @@
 //= require rails-timeago
 //= require bootstrap-sprockets
 //= require bootstrap
-//= require chosen_v1.2.0/chosen.jquery
+//= require chosen-jquery
 //= require momentjs
