@@ -11,7 +11,7 @@
     "dependencies": {
       // "three.js"    : "https://raw.github.com/mrdoob/three.js/master/build/three.js"
         "chosen_v1.2.0": "https://github.com/harvesthq/chosen/releases/download/v1.2.0/chosen_v1.2.0.zip",
-        "font-awesome": "~4.0.3",
+//        "font-awesome": "~4.0.3",
         "momentjs": "~2.5.1"
     }
   }
