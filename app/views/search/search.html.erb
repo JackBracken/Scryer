@@ -11,7 +11,7 @@
       </div>
   <% end %>
   <!--<%= @search %>-->
-  <%= (render :partial => 'home/story_result', :collection => @results) || (render :partial => 'empty') %>
+  <%= (render :partial => 'story_result', :collection => @results) || (render :partial => 'empty') %>
 
   <% if has_results? %>
       <div>
