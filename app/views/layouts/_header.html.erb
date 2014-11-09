@@ -6,9 +6,9 @@
       <p class="navbar-text"><em><%= Rails.configuration.taglines.sample %></em></p>
     </div>
     <ul class="nav navbar-nav nav-pills navbar-right">
-      <% if current_user %>
-      <li class="<%= active_link('/streams') %>"><a href="/streams">Streams</a></li>
-      <li class="<%= active_link('/searches') %>"><a href="/searches">Searches</a></li>
+      <% if user_signed_in? %>
+      <!--<li class="<%= active_link('/streams') %>"><a href="/streams">Streams</a></li>-->
+      <!--<li class="<%= active_link('/searches') %>"><a href="/searches">Searches</a></li>-->
       <% end %>
       <li><a href="https://forums.darklordpotter.net">DLP</a></li>
       <li class="<%= active_link(faq_path) %>"><%= link_to 'FAQ', faq_path %></li>
