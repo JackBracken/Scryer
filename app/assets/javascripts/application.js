@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require chosen-jquery
 //= require momentjs
+//= require_tree ./

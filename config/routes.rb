@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 
   root 'home#index'
   get 'search' => 'home#search', :as => :search
+  
+  get '/404', :to => 'errors#not_found'
+  get '/422', :to => 'errors#unacceptable'
+  get '/500', :to => 'errors#internal_error'
+  
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

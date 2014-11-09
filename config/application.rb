@@ -21,5 +21,7 @@ module Scryer
     # config.i18n.default_locale = :de
 
     #config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
+    config.exceptions_app = self.routes
   end
 end
