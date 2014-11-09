@@ -21,6 +21,10 @@ development:
   <<: *default
   database: scryer_development
 
+development_dlp:
+  <<: *default
+  database: darklord_mainvb
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -50,5 +54,11 @@ test:
 production:
   <<: *default
   database: scryer_production
+  username: scryer
+  password: <%= ENV['SCRYER_DATABASE_PASSWORD'] %>
+
+production_dlp:
+  <<: *default
+  database: darklord_mainvb
   username: scryer
   password: <%= ENV['SCRYER_DATABASE_PASSWORD'] %>
