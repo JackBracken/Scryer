@@ -13,13 +13,15 @@
 <%= render 'layouts/header' %>
 <div class="container">
     <%= yield %>
+</div>
 
-    <div class="footer">
-      <% if user_signed_in? %>
-        <p class="pull-right small">Logged in as <%= current_user.username %></p>
-      <% end %>
-      <p>2014 DLP Group</p>
-    </div>
+<div class="footer">
+  <div class="container">
+    <% if user_signed_in? %>
+    <p class="pull-right small">Logged in as <%= current_user.username %></p>
+    <% end %>
+    <p>2014 DLP Group</p>
+  </div>
 </div>
 
 </body>
