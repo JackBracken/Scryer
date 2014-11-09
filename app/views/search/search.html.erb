@@ -1,6 +1,9 @@
 <div class="row marketing">
   <% if has_results? %>
-      <h4 id="result_header"><%= number_with_delimiter(@search_results.hits) %> Stories Found</h4>
+      <h4 class="page-header">
+        <%= Fandom.where(:id => @search['fandoms']).order(:id).map{|f| f.name}.join(' and ') %>
+        <small><%= number_with_delimiter(@search_results.hits) %> Stories Found</small>
+      </h4>
       <!-- TODO: graphs/stats -->
       <!-- TODO: Drilldown links / facets -->
       <div>
