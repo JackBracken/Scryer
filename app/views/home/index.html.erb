@@ -111,12 +111,7 @@
     <div class="row">
       <div class="form-group col-lg-3">
         <label for="search[language]">Language</label>
-        <select
-                chosen
-                ng-init="language='English'"
-                class="form-control"
-                ng-model="language"
-                ng-options="key as value for (key, value) in languages"
+        <select class="form-control"
                 name="search[language]"
                 id="search[language]">
           <% Language.all.each do |l| %>
@@ -126,14 +121,10 @@
       </div>
       <div class="form-group col-lg-3">
         <label for="search[rating][]">Rating</label>
-        <select chosen
-                multiple
-                ng-init="rating=['k','k+','t','m']"
+        <select multiple
                 class="form-control"
                 name="search[rating][]"
-                id="search[rating][]"
-                ng-model="rating"
-                ng-options="key as value for (key , value) in ratings">
+                id="search[rating][]">
           <option id="k" selected>K</option>
           <option id="k+" selected>K+</option>
           <option id="t" selected>T</option>
@@ -164,38 +155,29 @@
     <div class="row">
       <div class="form-group col-lg-3">
         <label for="search[sort_by]">Sort By</label>
-        <select chosen
-                class="form-control"
-                ng-init="sort_by='_score'"
+        <select class="form-control"
                 name="search[sort_by]"
-                id="search[sort_by]"
-                ng-model="sort_by"
-                ng-options="key as value for (key , value) in sortings">
-          <option id="_score" selected>Best Match</option>
-          <option id="updated">Updated</option>
-          <option id="published">Published</option>
-          <option id="meta.words">Wordcount</option>
-          <option id="meta.reviews">Reviews</option>
-          <option id="meta.favs">Favorites</option>
-          <option id="meta.follows">Follows</option>
-          <option id="_dlp">DLP Review Score</option>
-          <!--<option id="_popular">Popular & Recent</option>-->
-          <!--<option id="_flesch">Flesch Index (Reading level)</option>-->
-          <option id="meta.chapters">Chapters</option>
+                id="search[sort_by]">
+          <option value="_score" selected>Best Match</option>
+          <option value="updated">Updated</option>
+          <option value="published">Published</option>
+          <option value="meta.words">Wordcount</option>
+          <option value="meta.reviews">Reviews</option>
+          <option value="meta.favs">Favorites</option>
+          <option value="meta.follows">Follows</option>
+          <option value="_dlp">DLP Review Score</option>
+          <!--<option value="_popular">Popular & Recent</option>-->
+          <!--<option value="_flesch">Flesch Index (Reading level)</option>-->
+          <option value="meta.chapters">Chapters</option>
         </select>
       </div>
       <div class="form-group col-lg-3">
         <label for="search[order_by]">Order</label>
-        <select chosen
-                disable_search_threshold="4"
-                ng-init="order_by='desc'"
-                class="form-control"
+        <select class="form-control"
                 name="search[order_by]"
-                id="search[order_by]"
-                ng-model="order_by"
-                ng-options="key as value for (key , value) in orderings">
-          <option id="desc" selected>Descending</option>
-          <option id="asc">Ascending</option>
+                id="search[order_by]">
+          <option value="desc" selected>Descending</option>
+          <option value="asc">Ascending</option>
         </select>
       </div>
     </div>

@@ -2,6 +2,7 @@
   <% if has_results? %>
       <h4 id="result_header"><%= number_with_delimiter(@search_results.hits) %> Stories Found</h4>
       <!-- TODO: graphs/stats -->
+      <!-- TODO: Drilldown links / facets -->
       <div>
         <%= page_entries_info @paginate %>
       </div>
