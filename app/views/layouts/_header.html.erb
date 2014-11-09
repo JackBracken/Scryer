@@ -2,25 +2,17 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" ng-class="{ active: isActive('/')}" href="/">Scryer</a>
-      <p class="navbar-text"><em>Fanfiction Search Engine</em></p>
+      <a class="navbar-brand <%= active_link(root_path) %>" href="/">Scryer</a>
+      <p class="navbar-text"><em><%= Rails.configuration.taglines.sample %></em></p>
     </div>
     <ul class="nav navbar-nav nav-pills navbar-right">
-      <!--<li ng-class="{ active: isActive('/streams')}"><a href="/streams">Streams</a></li>-->
-      <!--<li ng-class="{ active: isActive('/searches')}"><a href="/searches">Searches</a></li>-->
+      <% if current_user %>
+      <li class="<%= active_link('/streams') %>"><a href="/streams">Streams</a></li>
+      <li class="<%= active_link('/searches') %>"><a href="/searches">Searches</a></li>
+      <% end %>
       <li><a href="https://forums.darklordpotter.net">DLP</a></li>
-      <li ng-class="{ active: isActive('/faq')}"><%= link_to 'FAQ', faq_path %></li>
-      <li ng-class="{ active: isActive('/about')}"><a href="/about">About</a></li>
-      <!--<li class="dropdown">-->
-        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Lord Ravenclaw <span class="caret"></span></a>-->
-        <!--<ul class="dropdown-menu" role="menu">-->
-          <!--&lt;!&ndash;<li><a href="#">Searches</a></li>&ndash;&gt;-->
-          <!--&lt;!&ndash;<li><a href="#">Streams</a></li>&ndash;&gt;-->
-          <!--&lt;!&ndash;<li><a href="#">Author Page</a></li>&ndash;&gt;-->
-          <!--&lt;!&ndash;<li class="divider"></li>&ndash;&gt;-->
-          <!--<li><a href="#">Logout</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
+      <li class="<%= active_link(faq_path) %>"><%= link_to 'FAQ', faq_path %></li>
+      <li class="<%= active_link(about_path) %>"><%= link_to 'About', about_path %></li>
     </ul>
   </div>
 </nav>
