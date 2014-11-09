@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable
   establish_connection "#{Rails.env}_dlp"
 
+  def is_admin?
+    usergroupid == 6
+  end
+
   def encrypted_password
     password
   end
