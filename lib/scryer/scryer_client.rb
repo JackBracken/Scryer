@@ -10,6 +10,7 @@ module Scryer
         faraday.response :logger                  # log requests to STDOUT
         faraday.use :instrumentation
         faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+        faraday.headers['User-Agent'] = 'ScryerNG'
       end
     end
 
@@ -29,7 +30,18 @@ module Scryer
 
       resp.body
     end
+
+    def characters
+      resp = @conn.get '/v1/characters'
+
+      resp.body
+    end
+
+    def fandoms
+      resp = @conn.get '/v1/fandoms'
+
+      resp.body
+    end
+
   end
-
-
 end
