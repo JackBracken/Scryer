@@ -10,7 +10,7 @@
           <%= paginate @paginate %>
       </div>
   <% end %>
-  <%= @search %>
+  <!--<%= @search %>-->
   <%= (render :partial => 'story_result', :collection => @results) || (render :partial => 'empty') %>
 
   <% if has_results? %>
