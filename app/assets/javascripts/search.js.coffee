@@ -8,6 +8,8 @@ $(->
   $("[name='search[character_optional][]']").chosen()
   $("[name='search[fandom]']").chosen()
   $("[name='search[crossovers]']").chosen({allow_single_deselect: true})
+  $("[name='search[status]']").chosen({allow_single_deselect: true})
+  $("[name='search[language]']").chosen({allow_single_deselect: true})
   $("[name='search[rating][]']").chosen()
   $("[name='search[sort_by]']").chosen()
   $("[name='search[order_by]']").chosen()

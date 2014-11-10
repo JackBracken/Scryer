@@ -124,7 +124,9 @@
         <label for="search[language]">Language</label>
         <select class="form-control"
                 name="search[language]"
-                id="search[language]">
+                id="search[language]"
+                data-placeholder="Any Language">
+          <option value=""></option>
           <% Language.all.each do |l| %>
             <option value="<%= l.name.downcase %>"<%= ' selected' if l.name == "English"%>><%= l.name %></option>
           <% end %>
