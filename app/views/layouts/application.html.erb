@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Scryer</title>
+  <title>Scryer<%= content_for?(:title) ? " :: #{content_for(:title)}" : '' %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    controller_name, media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -13,18 +13,27 @@
 <body class="<%= controller_name %>" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
 
 <%= render 'layouts/header' %>
-<div class="container">
-    <%= yield %>
+<%= render 'feedback/modal' %>
+<div class="container <%= controller_name %>">
+  <% [:notice, :error, :alert].each do |level| %>
+    <% unless flash[level].blank? %>
+      <div class="alert alert-<%= flash_class(level) %>">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= flash[level] %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= yield %>
 </div>
 
-<div class="footer">
+<footer class="footer">
   <div class="container">
     <% if user_signed_in? && current_user %>
     <p class="pull-right small">Logged in as <%= current_user.try(:username) %></p>
     <% end %>
     <p>2014 DLP Group</p>
   </div>
-</div>
+</footer>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>

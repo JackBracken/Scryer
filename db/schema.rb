@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109223905) do
+ActiveRecord::Schema.define(version: 20141110223905) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20141109223905) do
 
   create_table "fandoms", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feedback", force: true do |t|
+    t.text     "feedback_text"
+    t.integer  "score"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

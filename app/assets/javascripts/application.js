@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require rails-timeago
 //= require bootstrap-sprockets
-//= require bootstrap
 //= require chosen-jquery
 //= require momentjs
 //= require_tree ./

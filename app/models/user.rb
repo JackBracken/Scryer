@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable
   establish_connection "#{Rails.env}_dlp"
 
+  has_many :feedbacks
+
   def is_admin?
     try(:usergroupid) == 6
   end

@@ -1,18 +1,22 @@
-<nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand <%= active_link(root_path) %>" href="/">Scryer</a>
-      <p class="navbar-text"><em><%= Rails.configuration.taglines.sample %></em></p>
-    </div>
-    <ul class="nav navbar-nav nav-pills navbar-right">
-      <% if user_signed_in? %>
-      <!--<li class="<%= active_link('/streams') %>"><a href="/streams">Streams</a></li>-->
-      <!--<li class="<%= active_link('/searches') %>"><a href="/searches">Searches</a></li>-->
-      <% end %>
-      <li><a href="https://forums.darklordpotter.net">DLP</a></li>
-      <li class="<%= active_link(faq_path) %>"><%= link_to 'FAQ', faq_path %></li>
-      <li class="<%= active_link(about_path) %>"><%= link_to 'About', about_path %></li>
-    </ul>
-  </div>
-</nav>
+<header>
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand <%= active_link(root_path) %>" href="/">Scryer</a>
+          <p class="navbar-text"><em><%= Rails.configuration.taglines.sample %></em></p>
+        </div>
+        <ul class="nav navbar-nav nav-pills navbar-right">
+          <% if user_signed_in? %>
+          <!--<li class="<%= active_link('/streams') %>"><a href="/streams">Streams</a></li>-->
+          <!--<li class="<%= active_link('/searches') %>"><a href="/searches">Searches</a></li>-->
+          <% end %>
+          <li><a data-toggle="modal" data-target="#feedbackModal">Give Feedback</a></li>
+          <li><a href="https://forums.darklordpotter.net">DLP</a></li>
+          <li class="<%= active_link(faq_path) %>"><%= link_to 'FAQ', faq_path %></li>
+          <li class="<%= active_link(about_path) %>"><%= link_to 'About', about_path %></li>
+        </ul>
+      </div>
+
+    </nav>
+</header>
