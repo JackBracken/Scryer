@@ -1,20 +1,25 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <% if story_result.meta.thread_data %>
-        <a href="https://forums.darklordpotter.net/showthread.php?t=<%= story_result.meta.thread_data.thread_id %>"
-        class="pull-right">
+        <a
+        href="https://forums.darklordpotter.net/showthread.php?t=<%= story_result.meta.thread_data.thread_id %>"
+        data-thread-id="<%= story_result.meta.thread_data.thread_id %>"
+        class="pull-right thread-link">
         DLP <%= number_with_precision(vote(story_result.meta.thread_data), precision: 2) %> <i class="fa fa-star"></i></a>
     <% end %>
     <h3 class="panel-title">
       <a
+              class="story-link"
+              data-story="<%= story_result.title %>"
               target="_blank"
-              href="https://www.fanfiction.net<%= story_result.url %>"
-              ng-mousedown="trackNavigate('story', item.title)"><%= story_result.title %></a>
+              href="https://www.fanfiction.net<%= story_result.url %>"><%= story_result.title %></a>
       by
       <a
+              class="author-link"
+              data-author="<%= story_result.author %>"
               target="_blank"
-              href="https://www.fanfiction.net<%= story_result.author_url %>"
-              ng-mousedown="trackNavigate('author', item.author)"><%= story_result.author %></a></h3>
+              href="https://www.fanfiction.net<%= story_result.author_url %>"><%= story_result.author %></a>
+    </h3>
   </div>
   <div class="panel-body">
     <%= story_result.summary %>
