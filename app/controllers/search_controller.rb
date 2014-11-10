@@ -1,8 +1,12 @@
 require 'scryer/scryer_client'
+require 'scryer/constant_options'
 
 class SearchController < ApplicationController
   @@scryer = Scryer::Client.new
+
   def index
+    @search = params[:search] || {}
+
 
   end
 

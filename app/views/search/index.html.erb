@@ -17,7 +17,7 @@
                 id="search[crossovers]"
                 data-placeholder="Choose a Fandom">
           <option value=""></option>
-          <%= options_from_collection_for_select(Fandom.all.order(:name), :id, :name) %>
+          <%= options_from_collection_for_select(Fandom.all.order(:name), :id, :name, @search[:crossovers]) %>
         </select>
       </div>
     </div>
@@ -26,21 +26,21 @@
         <label for="search[title]">Title</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon-book"></i></span>
-          <input id="search[title]" name="search[title]" type="text" class="form-control" placeholder="Title" autocomplete="on" autofocus="autofocus" ng-model="title"/>
+          <input id="search[title]" name="search[title]" type="text" class="form-control" placeholder="Title" autocomplete="on" autofocus="autofocus" value="<%= @search[:title] %>"/>
         </div>
       </div>
       <div class="form-group col-lg-12">
         <label for="search[title]">Author</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon-book"></i></span>
-          <input id="search[author]" name="search[author]" type="text" class="form-control" placeholder="Author" autocomplete="on" ng-model="author"/>
+          <input id="search[author]" name="search[author]" type="text" class="form-control" placeholder="Author" autocomplete="on" value="<%= @search[:author] %>"/>
         </div>
       </div>
       <div class="form-group col-lg-12">
         <label for="search[title]">Summary</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon-book"></i></span>
-          <input id="search[summary]" name="search[summary]" type="text" class="form-control" placeholder="Summary keywords" autocomplete="on" ng-model="summary"/>
+          <input id="search[summary]" name="search[summary]" type="text" class="form-control" placeholder="Summary keywords" autocomplete="on" value="<%= @search[:summary] %>"/>
         </div>
         <span class="help-block">
           <a rel="nofollow" href="http://lucene.apache.org/core/2_9_4/queryparsersyntax.html">Lucene Query Syntax</a>
@@ -63,21 +63,23 @@
                 data-placeholder="Choose up to 2 required categories"
                 name="search[category_required][]"
                 id="search[category_required][]">
-          <%= options_from_collection_for_select(Category.all, :id, :name) %>
+          <%= options_from_collection_for_select(Category.all, :id, :name, @search[:category_required]) %>
         </select>
       </div>
       <div class="form-group col-lg-6">
-        <label for="search[category_optional_exclude]" data-type="Categories">Excluded Categories</label>
+        <label for="search[category_optional_exclude]" data-type="Categories">
+          <%= included_text(@search[:category_optional_exclude], 'Categories') %>
+        </label>
         <div class="input-group">
           <span class="input-group-addon">
-            <%= check_box_tag 'search[category_optional_exclude]', 'true', true %> Exclude
+            <%= check_box_tag 'search[category_optional_exclude]', 'true', @search[:category_optional_exclude] %> Exclude
           </span>
           <select multiple
                   class="form-control"
                   data-placeholder="Choose some categories"
                   name="search[category_optional][]"
                   id="search[category_optional][]">
-            <%= options_from_collection_for_select(Category.all, :id, :name) %>
+            <%= options_from_collection_for_select(Category.all, :id, :name, @search[:category_optional]) %>
           </select>
         </div>
       </div>
@@ -92,11 +94,13 @@
                 data-placeholder="Choose up to 4 required characters"
                 name="search[character_required][]"
                 id="search[character_required][]">
-          <%= options_from_collection_for_select(Character.where(:fandom_id => 224), :id, :name) %>
+          <%= options_from_collection_for_select(Character.where(:fandom_id => 224), :id, :name, @search[:character_required]) %>
         </select>
       </div>
       <div class="form-group col-lg-6">
-        <label for="search[character_optional_exclude]" data-type="Characters">Excluded Characters</label>
+        <label for="search[character_optional_exclude]" data-type="Characters">
+          <%= included_text(@search[:character_optional_exclude], 'Characters') %>
+        </label>
         <div class="input-group">
           <span class="input-group-addon">
               <!--<input type="checkbox"-->
@@ -105,14 +109,14 @@
                      <!--name="search[character_optional_exclude]"-->
                      <!--id="search[character_optional_exclude]"-->
                       <!--/> Exclude-->
-            <%= check_box_tag 'search[character_optional_exclude]', 'true', true %> Exclude
+            <%= check_box_tag 'search[character_optional_exclude]', 'true', @search[:character_optional_exclude] %> Exclude
           </span>
           <select multiple
                   class="form-control"
                   data-placeholder="Choose some characters"
                   name="search[character_optional][]"
                   id="search[character_optional][]">
-            <%= options_from_collection_for_select(Character.where(:fandom_id => 224), :id, :name) %>
+            <%= options_from_collection_for_select(Character.where(:fandom_id => 224), :id, :name, @search[:character_optional]) %>
           </select>
         </div>
       </div>
@@ -133,34 +137,40 @@
         </select>
       </div>
       <div class="form-group col-lg-3">
+        <label for="search[status]">Status</label>
+        <select class="form-control"
+                name="search[status]"
+                id="search[status]"
+                data-placeholder="Any Status">
+          <%= options_for_select(Scryer::ConstantOptions::STATUS, @search[:status]) %>
+        </select>
+      </div>
+      <div class="form-group col-lg-3">
         <label for="search[rating][]">Rating</label>
         <select multiple
                 class="form-control"
                 name="search[rating][]"
                 id="search[rating][]">
-          <option id="k" selected>K</option>
-          <option id="k+" selected>K+</option>
-          <option id="t" selected>T</option>
-          <option id="m" selected>M</option>
+          <%= options_for_select(Scryer::ConstantOptions::RATING, @search[:rating] || Scryer::ConstantOptions::RATING.values) %>
         </select>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-lg-3">
         <label for="search[wordcount_lower]">Wordcount Minimum</label>
-        <input type="number" class="form-control" id="search[wordcount_lower]" name="search[wordcount_lower]" placeholder="0" />
+        <input type="number" class="form-control" id="search[wordcount_lower]" name="search[wordcount_lower]" placeholder="0" value="<%= @search[:wordcount_lower] %>" />
       </div>
       <div class="form-group col-lg-3">
         <label for="search[wordcount_upper]">Wordcount Maximum</label>
-        <input type="number" class="form-control" id="search[wordcount_upper]" name="search[wordcount_upper]" placeholder="0" />
+        <input type="number" class="form-control" id="search[wordcount_upper]" name="search[wordcount_upper]" placeholder="0" value="<%= @search[:wordcount_upper] %>" />
       </div>
       <div class="form-group col-lg-3">
         <label for="search[chapters_lower]">Chapters Minimum</label>
-        <input type="number" class="form-control" id="search[chapters_lower]" name="search[chapters_lower]" placeholder="0" />
+        <input type="number" class="form-control" id="search[chapters_lower]" name="search[chapters_lower]" placeholder="0" value="<%= @search[:chapters_lower] %>" />
       </div>
       <div class="form-group col-lg-3">
         <label for="search[chapters_upper]">Chapters Maximum</label>
-        <input type="number" class="form-control" id="search[chapters_upper]" name="search[chapters_upper]" placeholder="0" />
+        <input type="number" class="form-control" id="search[chapters_upper]" name="search[chapters_upper]" placeholder="0" value="<%= @search[:chapters_upper] %>"/>
       </div>
     </div>
 
@@ -171,17 +181,7 @@
         <select class="form-control"
                 name="search[sort_by]"
                 id="search[sort_by]">
-          <option value="_score" selected>Best Match</option>
-          <option value="updated">Updated</option>
-          <option value="published">Published</option>
-          <option value="meta.words">Wordcount</option>
-          <option value="meta.reviews">Reviews</option>
-          <option value="meta.favs">Favorites</option>
-          <option value="meta.follows">Follows</option>
-          <option value="_dlp">DLP Review Score</option>
-          <!--<option value="_popular">Popular & Recent</option>-->
-          <!--<option value="_flesch">Flesch Index (Reading level)</option>-->
-          <option value="meta.chapters">Chapters</option>
+          <%= options_for_select(Scryer::ConstantOptions::SORTING, @search[:sort_by]) %>
         </select>
       </div>
       <div class="form-group col-lg-3">
@@ -189,8 +189,7 @@
         <select class="form-control"
                 name="search[order_by]"
                 id="search[order_by]">
-          <option value="desc" selected>Descending</option>
-          <option value="asc">Ascending</option>
+          <%= options_for_select(Scryer::ConstantOptions::ORDERING, @search[:order_by]) %>
         </select>
       </div>
     </div>
