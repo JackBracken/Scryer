@@ -79,6 +79,10 @@ gem 'dalli'
 # Easy running
 gem 'foreman'
 
+# Exception Tracking
+gem 'rollbar', '~> 1.2.6'
+gem 'sentry-raven', :git => 'https://github.com/getsentry/raven-ruby.git'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
