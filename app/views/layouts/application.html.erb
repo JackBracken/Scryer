@@ -35,6 +35,9 @@
 
    ga('create', 'UA-442860-6');
    ga('send', 'pageview');
+   <% if user_signed_in? && current_user %>
+    ga('set', '&uid', '<%= current_user.try(:id) %>');
+   <% end %>
 </script>
 </body>
 </html>

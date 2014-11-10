@@ -12,11 +12,11 @@
       </div>
       <div class="form-group col-lg-6">
         <label for="crossovers">Crossover</label>
-        <select chosen
-                class="form-control"
+        <select class="form-control"
                 name="search[crossovers]"
-                id="search[crossovers]">
-          <option value="" selected>None</option>
+                id="search[crossovers]"
+                data-placeholder="Choose a Fandom">
+          <option value=""></option>
           <%= options_from_collection_for_select(Fandom.all.order(:name), :id, :name) %>
         </select>
       </div>
@@ -60,6 +60,7 @@
                 multiple
                 max-selected-options="2"
                 class="form-control"
+                data-placeholder="Choose up to 2 required categories"
                 name="search[category_required][]"
                 id="search[category_required][]">
           <%= options_from_collection_for_select(Category.all, :id, :name) %>
@@ -73,6 +74,7 @@
           </span>
           <select multiple
                   class="form-control"
+                  data-placeholder="Choose some categories"
                   name="search[category_optional][]"
                   id="search[category_optional][]">
             <%= options_from_collection_for_select(Category.all, :id, :name) %>
@@ -87,6 +89,7 @@
         <label for="search[character_required][]">Required Characters (max: 4)</label>
         <select multiple
                 class="form-control"
+                data-placeholder="Choose up to 4 required characters"
                 name="search[character_required][]"
                 id="search[character_required][]">
           <%= options_from_collection_for_select(Character.all, :id, :name) %>
@@ -106,6 +109,7 @@
           </span>
           <select multiple
                   class="form-control"
+                  data-placeholder="Choose some characters"
                   name="search[character_optional][]"
                   id="search[character_optional][]">
             <%= options_from_collection_for_select(Character.all, :id, :name) %>

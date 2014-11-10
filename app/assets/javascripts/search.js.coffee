@@ -7,7 +7,7 @@ $(->
   $("[name='search[character_required][]']").chosen({max_selected_options: 4})
   $("[name='search[character_optional][]']").chosen()
   $("[name='search[fandom]']").chosen()
-  $("[name='search[crossovers]']").chosen()
+  $("[name='search[crossovers]']").chosen({allow_single_deselect: true})
   $("[name='search[rating][]']").chosen()
   $("[name='search[sort_by]']").chosen()
   $("[name='search[order_by]']").chosen()
