@@ -1,34 +1,22 @@
-<div class="row marketing">
-  <% if has_results? %>
-      <h4 class="page-header">
-        <%= Fandom.where(:id => @search['fandoms']).order(:id).map{|f| f.name}.join(' and ') %>
-        <small><%= number_with_delimiter(@search_results.hits) %> Stories Found</small>
-      </h4>
-      <!-- TODO: graphs/stats -->
-      <!-- TODO: Drilldown links / facets -->
-      <div>
-        <%= page_entries_info @paginate %>
-      </div>
-      <div>
-          <%= paginate @paginate %>
-      </div>
-  <% end %>
-  <!--<%= @search %>-->
-  <%= (render :partial => 'story_result', :collection => @results) || (render :partial => 'empty') %>
+<% if has_results? %>
+  <h4 class="page-header">
+    <%= Fandom.where(:id => @search['fandoms']).order(:id).map{|f| f.name}.join(' and ') %>
+    <small><%= number_with_delimiter(@search_results.hits) %> Stories Found</small>
+  </h4>
+  <!-- TODO: graphs/stats -->
+  <!-- TODO: Drilldown links / facets -->
+  <div>
+    <%= page_entries_info @paginate %>
+  </div>
+  <div>
+      <%= paginate @paginate %>
+  </div>
+<% end %>
+<!--<%= @search %>-->
+<%= (render :partial => 'story_result', :collection => @results) || (render :partial => 'empty') %>
 
-  <% if has_results? %>
-      <div>
-          <%= paginate @paginate %>
-      </div>
-  <% end %>
-  <!--<pagination total-items="hits"-->
-              <!--items-per-page="25"-->
-              <!--page="page"-->
-              <!--on-select-page="runQuery(page)"-->
-              <!--max-size="5"-->
-              <!--class="pagination-sm"-->
-              <!--boundary-links="true"-->
-              <!--rotate="false"-->
-              <!--ng-hide="!results.length"-->
-              <!--num-pages="numPages"></pagination>-->
-</div>
+<% if has_results? %>
+  <div>
+      <%= paginate @paginate %>
+  </div>
+<% end %>
