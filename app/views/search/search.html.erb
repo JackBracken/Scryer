@@ -5,6 +5,9 @@
   </h4>
   <!-- TODO: graphs/stats -->
   <!-- TODO: Drilldown links / facets -->
+    <div>
+      <%= link_to 'Alter Search', root_path(search: @search) %>
+    </div>
   <div>
     <%= page_entries_info @paginate %>
   </div>
