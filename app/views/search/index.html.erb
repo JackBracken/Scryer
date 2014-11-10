@@ -92,7 +92,7 @@
                 data-placeholder="Choose up to 4 required characters"
                 name="search[character_required][]"
                 id="search[character_required][]">
-          <%= options_from_collection_for_select(Character.all, :id, :name) %>
+          <%= options_from_collection_for_select(Character.where(:fandom_id => 224), :id, :name) %>
         </select>
       </div>
       <div class="form-group col-lg-6">
@@ -112,7 +112,7 @@
                   data-placeholder="Choose some characters"
                   name="search[character_optional][]"
                   id="search[character_optional][]">
-            <%= options_from_collection_for_select(Character.all, :id, :name) %>
+            <%= options_from_collection_for_select(Character.where(:fandom_id => 224), :id, :name) %>
           </select>
         </div>
       </div>

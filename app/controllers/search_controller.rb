@@ -18,4 +18,12 @@ class SearchController < ApplicationController
     @results = @search_results.results
     @paginate = Kaminari.paginate_array([], total_count: @search_results.hits).page(@page).per(25)
   end
+
+  def characters
+    @characters = @@scryer.union_characters(params[:fandom])
+
+    respond_to do |format|
+      format.json { render json: @characters }
+    end
+  end
 end
