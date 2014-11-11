@@ -17,8 +17,8 @@ module Scryer
     RATING = {
       'K' => 'k',
       'K+' => 'k+',
-      'T' => 'T',
-      'M' => 'M',
+      'T' => 't',
+      'M' => 'm',
     }
     STATUS = {
       '' => '',
