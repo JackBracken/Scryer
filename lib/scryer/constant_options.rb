@@ -23,6 +23,7 @@ module Scryer
     STATUS = {
       '' => '',
       'Completed' => 'complete',
+      'Hiatus' => 'hiatus',
       'In-Progress' => 'progress'
     }
   end
