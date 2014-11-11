@@ -7,7 +7,7 @@ $(->
   $("[name='search[character_required][]']").chosen({max_selected_options: 4})
   $("[name='search[character_optional][]']").chosen()
   $("[name='search[fandom]']").chosen().on('change', (e,p) -> handleFandom(e,p))
-  $("[name='search[crossovers]'][]]").chosen({allow_single_deselect: true}).on('change', (e,p) -> handleFandom(e,p))
+  $("[name='search[crossovers][]']").chosen({allow_single_deselect: true}).on('change', (e,p) -> handleFandom(e,p))
   $("[name='search[status]']").chosen({allow_single_deselect: true})
   $("[name='search[language]']").chosen({allow_single_deselect: true})
   $("[name='search[rating][]']").chosen()
