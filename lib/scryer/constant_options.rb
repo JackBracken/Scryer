@@ -22,8 +22,8 @@ module Scryer
     }
     STATUS = {
       '' => '',
-      'Completed' => 'completed',
-      'In-Progress' => 'in-progress'
+      'Completed' => 'complete',
+      'In-Progress' => 'progress'
     }
   end
 end
