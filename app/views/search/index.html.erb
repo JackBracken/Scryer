@@ -13,8 +13,8 @@
       <div class="form-group col-lg-6">
         <label for="crossovers">Crossover</label>
         <select class="form-control"
-                name="search[crossovers]"
-                id="search[crossovers]"
+                name="search[crossovers][]"
+                id="search[crossovers][]"
                 data-placeholder="Choose a Fandom">
           <option value=""></option>
           <%= options_from_collection_for_select(Fandom.all.order(:name), :id, :name, @search[:crossovers]) %>

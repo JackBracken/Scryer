@@ -7,7 +7,7 @@ $(->
   $("[name='search[character_required][]']").chosen({max_selected_options: 4})
   $("[name='search[character_optional][]']").chosen()
   $("[name='search[fandom]']").chosen().on('change', (e,p) -> handleFandom(e,p))
-  $("[name='search[crossovers]']").chosen({allow_single_deselect: true}).on('change', (e,p) -> handleFandom(e,p))
+  $("[name='search[crossovers]'][]]").chosen({allow_single_deselect: true}).on('change', (e,p) -> handleFandom(e,p))
   $("[name='search[status]']").chosen({allow_single_deselect: true})
   $("[name='search[language]']").chosen({allow_single_deselect: true})
   $("[name='search[rating][]']").chosen()
@@ -28,7 +28,7 @@ $(->
 
   handleFandom = (e,p) ->
     fandom = $("option:selected", $("[name='search[fandom]']"));
-    crossover = $("option:selected", $("[name='search[crossovers]']"));
+    crossover = $("option:selected", $("[name='search[crossovers][]']"));
 
     $.getJSON("/characters?fandom[]="+fandom.val()+"&fandom[]="+crossover.val(), (data) ->
       select = $("[name='search[character_required][]']")
