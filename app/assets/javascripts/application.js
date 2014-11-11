@@ -16,5 +16,4 @@
 //= require bootstrap-sprockets
 //= require chosen-jquery
 //= require momentjs
-//= require select2
 //= require_tree ./

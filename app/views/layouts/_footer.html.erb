@@ -1,0 +1,8 @@
+<footer class="footer">
+  <div class="container">
+    <% if user_signed_in? && current_user %>
+        <p class="pull-right small">Logged in as <%= current_user.try(:username) %></p>
+    <% end %>
+    <p>2014 DLP Group (rev: <%= link_to "#{GIT_COMMIT}@#{GIT_BRANCH}", 'https://github.com/projectdlp/Scryer/commit/'+GIT_COMMIT %>)</p>
+  </div>
+</footer>

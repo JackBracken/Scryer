@@ -26,14 +26,7 @@
   <%= yield %>
 </div>
 
-<footer class="footer">
-  <div class="container">
-    <% if user_signed_in? && current_user %>
-    <p class="pull-right small">Logged in as <%= current_user.try(:username) %></p>
-    <% end %>
-    <p>2014 DLP Group</p>
-  </div>
-</footer>
+<%= render :partial => 'layouts/footer' %>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
