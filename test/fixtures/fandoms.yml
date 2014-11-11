@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Character One (1)
   fandom_id: 1
+  name: Fandom One
 
 two:
-  name: Character Two (1)
-  fandom_id: 1
-
-three:
-  name: Character Three (2)
   fandom_id: 2
+  name: Fandom Two
