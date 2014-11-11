@@ -3,6 +3,14 @@
     <% if user_signed_in? && current_user %>
         <p class="pull-right small">Logged in as <%= current_user.try(:username) %></p>
     <% end %>
-    <p>2014 DLP Group (rev: <%= link_to "#{GIT_COMMIT}@#{GIT_BRANCH}", 'https://github.com/projectdlp/Scryer/commit/'+GIT_COMMIT %>)</p>
+    <div>
+      © 2014 DLP Group
+    </div>
+    <div>
+      <span class="small">
+        (Scryer 2.0-<%= link_to "#{GIT_COMMIT}@#{GIT_BRANCH}", 'https://github.com/projectdlp/Scryer/commit/'+GIT_COMMIT %>
+        <%= Rails.env %>)
+      </span>
+    </div>
   </div>
 </footer>
