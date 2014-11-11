@@ -3,7 +3,7 @@ require 'hashie/mash'
 class Fandom < ActiveRecord::Base
   has_many :characters
 
-  self.def fandom_facets(fandom_id)
+  def self.fandom_facets(fandom_id)
     Rails.cache.fetch("fandom_facets_#{fandom_id}", :expires_in => 6.hours) do
       buckets = $elasticsearch.search(
           index: 'ffncrossover_index',
@@ -40,6 +40,7 @@ class Fandom < ActiveRecord::Base
       end
     end
   rescue e
+    Rollbar.warn("Fandom: Failed to pull facets: #{e}")
     Fandom.all.order(:name)
   end
 end
