@@ -25,7 +25,7 @@
     <%= story_result.summary %>
   </div>
   <div class="panel-footer small">
-    <% if @search && @search[:crossovers].size > 1 %>
+    <% if @search[:crossovers] && @search[:crossovers].size > 1 %>
         <i class="fa fa-random"></i>
         <%= story_result.fandoms.find{|f| f.fandom_id != @search[:fandom].to_i}.fandom_name  %>
         -

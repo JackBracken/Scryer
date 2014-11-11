@@ -1,6 +1,6 @@
 <% if has_results? %>
   <h4 class="page-header">
-    <%= Fandom.where(:id => @search['fandoms']).order(:id).map{|f| f.name}.join(' and ') %>
+    <%= Fandom.where(:id => @fandoms).order(:id).map{|f| f.name}.join(' and ') %>
     <small><%= number_with_delimiter(@search_results.hits) %> Stories Found</small>
   </h4>
   <!-- TODO: graphs/stats -->

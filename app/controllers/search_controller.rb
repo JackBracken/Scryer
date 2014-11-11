@@ -14,7 +14,8 @@ class SearchController < ApplicationController
 
   def search
     @search = params[:search]
-    @search['crossovers'] = ([] << @search['crossovers']).flatten
+    @fandoms = [@search['fandom'], @search['crossovers']].flatten.compact
+    @search['crossovers'] = ([] << @search['crossovers']).flatten if @search['crossovers']
     @page = (params[:page] || '1').to_i
     @search_results = @@scryer.search(@search, (@page-1)*25, 25)
     @results = @search_results.results
