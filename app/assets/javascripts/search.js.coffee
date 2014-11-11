@@ -30,7 +30,9 @@ $(->
     fandom = $("option:selected", $("[name='search[fandom]']"));
     crossover = $("option:selected", $("[name='search[crossovers][]']"));
 
-    $.getJSON("/characters?fandom[]="+fandom.val()+"&fandom[]="+crossover.val(), (data) ->
+    crossover_req = (crossover.map (c) -> "&fandom[]="+$(this).val()).toArray().join('')
+
+    $.getJSON("/characters?fandom[]="+fandom.val()+crossover_req, (data) ->
       select = $("[name='search[character_required][]']")
       select2 = $("[name='search[character_optional][]']")
       options = select.prop('options')
