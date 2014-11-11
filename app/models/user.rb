@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable
-  establish_connection "#{Rails.env}_dlp"
+  establish_connection "#{Rails.env}_dlp".to_sym
 
   has_many :feedbacks
 
