@@ -18,6 +18,7 @@ gem 'chosen-rails'
 gem 'select2-rails'
 
 # ElasticSearch
+gem 'elasticsearch'
 #gem 'elasticsearch-model'
 #gem 'elasticsearch-rails'
 #gem 'elasticsearch-persistence'

@@ -6,6 +6,7 @@ class SearchController < ApplicationController
 
   def index
     @search = params[:search] || {}
+    @fandom_list = Fandom.fandom_facets(224)
   end
 
   def omni

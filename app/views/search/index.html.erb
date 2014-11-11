@@ -18,7 +18,7 @@
                 id="search[crossovers][]"
                 data-placeholder="Choose fandoms (if any)">
           <option value=""></option>
-          <%= options_from_collection_for_select(Fandom.all.order(:name), :id, :name, @search[:crossovers]) %>
+          <%= options_from_collection_for_select(@fandom_list, :id, :name, @search[:crossovers]) %>
         </select>
       </div>
     </div>
