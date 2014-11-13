@@ -39,8 +39,9 @@ class Fandom < ActiveRecord::Base
         Hashie::Mash.new f
       end
     end
-  rescue e
+  rescue Exception => e
     Rollbar.warn("Fandom: Failed to pull facets: #{e}")
+    Rails.logger.warn("Fandom: Failed to pull facets: #{e}")
     Fandom.all.order(:name)
   end
 end

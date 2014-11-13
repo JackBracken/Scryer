@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'search#index'
-  get 'faq' => 'home#faq', :as => :faq
-  get 'about' => 'home#about', :as => :about
+  get 'faq' => 'pages#faq', :as => :faq
+  get 'about' => 'pages#about', :as => :about
   get 'search' => 'search#search', :as => :search
   get 'characters' => 'search#characters'
   get 'omni' => 'search#omni'
