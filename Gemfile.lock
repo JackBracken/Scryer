@@ -175,8 +175,11 @@ GEM
       rake
     rash (0.4.0)
       hashie (~> 2.0.0)
+    redis (3.1.0)
     rollbar (1.2.7)
       multi_json (~> 1.3)
+    rollout (2.0.0)
+      redis
     ruby-progressbar (1.7.0)
     sass (3.2.19)
     sass-rails (4.0.4)
@@ -247,6 +250,7 @@ DEPENDENCIES
   rails-timeago (~> 2.0)
   rash
   rollbar (~> 1.2.6)
+  rollout
   sass-rails (~> 4.0.4)
   select2-rails
   spring

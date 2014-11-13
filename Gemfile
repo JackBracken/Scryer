@@ -23,6 +23,9 @@ gem 'lograge' # We don't need huge multi-line messages...
 # Exception Tracking
 gem 'rollbar', '~> 1.2.6'
 
+# Feature flagging
+gem 'rollout'
+
 # Easy running
 gem 'foreman'
 
