@@ -1,6 +1,6 @@
-<div class="page-header">
-  <h1>No results found</h1>
+<div class="page-header borderless">
+  <h1>No results found :(</h1>
   <p class="lead">
-    Try another search.
+    <%= link_to 'Try another search.', root_path(search: @search) %>
   </p>
 </div>

@@ -1,13 +1,13 @@
 <% if has_results? %>
   <h4 class="page-header">
+      <%= link_to 'Advanced Search', root_path(search: @search) %>
+    in
     <%= Fandom.where(:id => @fandoms).order(:id).map{|f| f.name}.join(' and ') %>
     <small><%= number_with_delimiter(@search_results.hits) %> Stories Found</small>
   </h4>
   <!-- TODO: graphs/stats -->
   <!-- TODO: Drilldown links / facets -->
-    <div>
-      <%= link_to 'Alter Search', root_path(search: @search) %>
-    </div>
+
   <div>
     <%= page_entries_info @paginate %>
   </div>
