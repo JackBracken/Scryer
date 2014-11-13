@@ -120,12 +120,18 @@ body {
     }
 }
 
-a {
+a, .pagination>li>a {
   color: #5dba5d;
 }
 
 a:hover {
   color: #476743;
+}
+
+.pagination>.active>a {
+   color: #476743;
+  background-color: #5dba5d;
+  border-color: #66cc66;
 }
 
 .borderless {
