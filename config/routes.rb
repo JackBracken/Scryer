@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'search' => 'search#search', :as => :search
   get 'characters' => 'search#characters'
   get 'omni' => 'search#omni'
+  post 'collector' => 'collector#receive_event'
 
   get '/404', :to => 'errors#not_found'
   get '/422', :to => 'errors#unacceptable'

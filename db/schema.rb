@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110223905) do
+ActiveRecord::Schema.define(version: 20141113052602) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -45,5 +45,30 @@ ActiveRecord::Schema.define(version: 20141110223905) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "pensieve_events", force: true do |t|
+    t.integer  "event_id"
+    t.string   "event_name"
+    t.string   "url"
+    t.string   "ip"
+    t.string   "user_agent"
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.string   "story_name"
+    t.integer  "author_id"
+    t.string   "author_name"
+    t.integer  "chapter_id"
+    t.integer  "chapter_name"
+    t.integer  "chapter_wordcount"
+    t.datetime "page_load"
+    t.datetime "page_start"
+    t.datetime "page_exit"
+    t.text     "raw_event"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pensieve_events", ["event_name"], name: "index_pensieve_events_on_event_name", using: :btree
+  add_index "pensieve_events", ["story_id", "chapter_id"], name: "index_pensieve_events_on_story_id_and_chapter_id", using: :btree
 
 end
