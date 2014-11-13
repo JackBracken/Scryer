@@ -70,6 +70,9 @@ gem 'rash'
 gem 'rack-mini-profiler'
 gem 'flamegraph'
 
+
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
