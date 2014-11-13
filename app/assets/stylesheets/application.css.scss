@@ -24,7 +24,7 @@ body {
 
 .navbar {
   min-height: 30px;
-  background-color: #21301F !important;
+  background-color: #324e2f !important;
 }
 
 .navbar-brand, .navbar-text, .nav > li > a {
@@ -120,6 +120,13 @@ body {
     }
 }
 
+a {
+  color: #5dba5d;
+}
+
+a:hover {
+  color: #476743;
+}
 
 .borderless {
   border: 0;
