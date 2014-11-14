@@ -29,7 +29,11 @@ class SearchController < ApplicationController
 private
 
   def extract_search
-    @search = params[:search] || {}
+    @search = params[:search]
+    unless @search.is_a?(Hash)
+      @search = {}
+    end
+
     @fandoms = [@search['fandom'], @search['crossovers']].flatten.compact
     @search['crossovers'] = ([] << @search['crossovers']).flatten if @search['crossovers']
   end
