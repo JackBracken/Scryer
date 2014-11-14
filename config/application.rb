@@ -24,7 +24,7 @@ module Scryer
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.exceptions_app = self.routes
 
-    config.middleware.insert_before 'ActionDispatch::Static', 'Rack::Cors' do
+    config.middleware.insert_before 'Rack::Lock', 'Rack::Cors' do
         allow do
           origins '*'
 
