@@ -40,7 +40,7 @@ module Scryer
     def union_characters(fandoms)
       resp = @conn.get '/v1/characters/'+fandoms.join(',')
 
-            resp.body
+      resp.body
     end
 
     def fandoms

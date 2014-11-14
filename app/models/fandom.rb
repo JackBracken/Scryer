@@ -44,4 +44,8 @@ class Fandom < ActiveRecord::Base
     Rails.logger.warn("Fandom: Failed to pull facets: #{e}")
     Fandom.all.order(:name)
   end
+
+  def self.name_sentence(fandoms)
+    where(:id => fandoms).order(:id).map { |f| f.name }.to_sentence
+  end
 end

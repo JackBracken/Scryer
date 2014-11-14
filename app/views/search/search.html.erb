@@ -2,7 +2,7 @@
     <h4 class="page-header">
       <%= link_to 'Search', root_path(search: @search) %>
       in
-      <%= Fandom.where(:id => @fandoms).order(:id).map { |f| f.name }.join(' and ') %>
+      <%= Fandom.name_sentence(@fandoms) %>
       <small><%= number_with_delimiter(@search_results.hits) %> Stories Found</small>
     </h4>
     <!-- TODO: graphs/stats -->
