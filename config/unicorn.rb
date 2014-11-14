@@ -1,4 +1,4 @@
-worker_processes 4
+worker_processes 3
 base_dir = "."
 shared_path = "."
 working_directory base_dir
@@ -19,6 +19,9 @@ pid "#{shared_path}/pids/unicorn.pid"
 stderr_path "#{shared_path}/log/unicorn.stderr.log"
 stdout_path "#{shared_path}/log/unicorn.stdout.log"
 
+GC.respond_to?(:copy_on_write_friendly=) and
+  GC.copy_on_write_friendly = true
+
 before_fork do |server, worker|
 # This option works in together with preload_app true setting
 # What is does is prevent the master process from holding
@@ -32,4 +35,22 @@ after_fork do |server, worker|
 # processes
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
+
+  if defined?(EventMachine)
+      unless EventMachine.reactor_running? && EventMachine.reactor_thread.alive?
+        if EventMachine.reactor_running?
+          EventMachine.stop_event_loop
+          EventMachine.release_machine
+          EventMachine.instance_variable_set("@reactor_running",false)
+        end
+        Thread.new { EventMachine.run }
+      end
+  end
+
+  EventMachine.error_handler{ |e|
+    Rollbar.log(e, 'EM handler threw exception')
+  }
 end
+
+Signal.trap("INT") { EventMachine.stop }
+Signal.trap("TERM") { EventMachine.stop }

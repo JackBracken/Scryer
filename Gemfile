@@ -23,8 +23,14 @@ gem 'lograge' # We don't need huge multi-line messages...
 # Exception Tracking
 gem 'rollbar', '~> 1.2.6'
 
+gem 'newrelic_rpm'
+
 # Feature flagging
 gem 'rollout'
+
+# Keen.IO
+gem 'keen'
+gem 'em-http-request', '~> 1.0'
 
 # Easy running
 gem 'foreman'
