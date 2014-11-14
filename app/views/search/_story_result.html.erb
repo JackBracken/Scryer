@@ -39,7 +39,7 @@
     - <%= story_result.meta.rated %>
     - <%= extract_names(story_result.meta.categories, '/') %>
     <!--- <%= raw show_characters(story_result.meta.characters, story_result.meta.relationships) %>-->
-    - <%= extract_names(story_result.meta.characters) %>
+    - <%= extract_names(story_result.meta.characters, ', ') %>
     - <%= number_with_delimiter(story_result.meta.words) %> words
     - <%= number_with_delimiter(story_result.meta.chapters) %> chapters
     - <%= number_with_delimiter(story_result.meta.reviews) %> reviews
