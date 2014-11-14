@@ -21,9 +21,8 @@ class SearchController < ApplicationController
 
   def search
     @page = (params[:page] || '1').to_i
-    @search_results = $scryer.search(@search, (@page-1)*25, 25)
-    @results = @search_results.results
-    @paginate = Kaminari.paginate_array([], total_count: @search_results.hits).page(@page).per(25)
+    @search_results = Search.perform_search(@search, @page, 25)
+    @read_stories = PensieveEvent.where(story_id: (@search_results.results.map{|r| r.story_id})).map{|r2| r2.story_id}
   end
 
   def characters

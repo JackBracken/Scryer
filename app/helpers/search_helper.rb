@@ -34,7 +34,7 @@ module SearchHelper
   end
 
   def has_results?
-    @search_results.hits > 0 && @results.size > 0
+    @search_results.hits > 0 && @search_results.results.size > 0
   end
 
   def included_text(excluded, item_type)
