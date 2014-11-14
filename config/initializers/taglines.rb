@@ -9,4 +9,5 @@ Rails.configuration.taglines = [
     'It\'s been written a thousand times already. Why not do it again?',
     'That\'s original.',
     'Enabler of questionable tastes.',
+    'We <strong>always</strong> cross the streams.'
 ].freeze

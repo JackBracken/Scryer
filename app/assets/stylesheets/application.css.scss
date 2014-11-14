@@ -24,7 +24,16 @@ body {
 
 .navbar {
   min-height: 30px;
-  background-color: #324e2f !important;
+  background-color: #324e2f;
+}
+
+// Only added in development mode
+.navbar-development {
+  background-color: darkred;
+}
+
+.fa-margin {
+  margin: 0 1px 0 1px;
 }
 
 .navbar-brand, .navbar-text, .nav > li > a {
@@ -34,7 +43,7 @@ body {
 }
 
 .navbar-brand {
-  height: 30px !important;
+  height: 30px;
 }
 
 .nav * a, a.navbar-brand {
