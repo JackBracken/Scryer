@@ -24,15 +24,5 @@ module Scryer
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.exceptions_app = self.routes
 
-    config.middleware.insert_after 'Rack::Sendfile', 'Rack::Cors' do
-        allow do
-          origins '*'
-
-          resource '/collector',
-            :headers => :any,
-            :methods => [:post, :options],
-            :max_age => 3600
-        end
-    end
   end
 end
