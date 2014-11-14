@@ -1,10 +1,19 @@
 require 'scryer/constant_options'
+require 'hashie/mash'
 
 class SearchController < ApplicationController
   before_filter :extract_search
 
   def index
     @fandom_list = Fandom.fandom_facets(224)
+    @characters = if @fandoms.size > 1
+      $scryer.union_characters(@fandoms).collect do |c|
+        Hashie::Mash.new(id: c.character_id, name:c.name)
+      end
+    else
+      Character.where(:fandom_id => 224)
+    end
+    puts @characters
   end
 
   def omni
