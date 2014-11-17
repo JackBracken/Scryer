@@ -41,8 +41,8 @@ $(->
       $('option', select2).remove()
 
       $.each(data, (k,v) ->
-        options[options.length] = new Option(v.name,v.character_id)
-        options2[options.length] = new Option(v.name,v.character_id)
+        options[options.length] = new Option(v.name,v.id)
+        options2[options.length] = new Option(v.name,v.id)
       )
 
       $("[name='search[character_required][]']").trigger('chosen:updated');
