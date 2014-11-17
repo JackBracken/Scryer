@@ -1,6 +1,6 @@
 class Character < ActiveRecord::Base
   def self.for_fandoms(fandoms)
-    if fandoms.size > 1
+    if fandoms && fandoms.size > 1
       self.fandom_union(fandoms).collect do |c|
         c = Character.new(id: c.character_id, name:c.name)
         c.readonly!
