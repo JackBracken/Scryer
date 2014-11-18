@@ -8,9 +8,12 @@
     <!-- TODO: graphs/stats -->
     <!-- TODO: Drilldown links / facets -->
 
+    <% content_for(:pagination) do %>
+        <%= page_entries_info @search_results.pagination %>
+    <% end %>
 
     <div>
-      <%= page_entries_info @search_results.pagination %>
+      <%= yield :pagination %>
     </div>
     <div class="text-right">
       <div>
@@ -25,6 +28,6 @@
 
 <% if has_results? %>
     <div class="text-right">
-      <%= paginate @search_results.pagination %>
+      <%= yield :pagination %>
     </div>
 <% end %>

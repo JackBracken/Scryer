@@ -1,3 +1,7 @@
+<% content_for(:chars) do %>
+    <%= options_from_collection_for_select(@characters, :id, :name, @search[:character_required]) %>
+<% end %>
+
 <div id="search">
   <h2><i class="fa fa-search text-muted"></i> Advanced Search</h2>
   <%= form_tag(search_url, :method => :get, :id=>'advanced_search') do |f| %>
@@ -95,7 +99,7 @@
                 data-placeholder="Choose up to 4 required characters"
                 name="search[character_required][]"
                 id="search[character_required][]">
-          <%= options_from_collection_for_select(@characters, :id, :name, @search[:character_required]) %>
+          <%= yield(:chars) %>
         </select>
       </div>
       <div class="form-group col-lg-6">
@@ -117,7 +121,7 @@
                   data-placeholder="Choose some characters"
                   name="search[character_optional][]"
                   id="search[character_optional][]">
-            <%= options_from_collection_for_select(@characters, :id, :name, @search[:character_optional]) %>
+            <%= yield(:chars) %>
           </select>
         </div>
       </div>
