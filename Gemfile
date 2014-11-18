@@ -93,4 +93,6 @@ group :development do
   gem 'spring'
   gem 'bullet'
   gem 'quiet_assets'
+  gem 'ruby-prof'
+  gem 'annotate'
 end
