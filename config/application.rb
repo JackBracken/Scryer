@@ -24,5 +24,6 @@ module Scryer
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.exceptions_app = self.routes
 
+    config.maintenance = true
   end
 end
