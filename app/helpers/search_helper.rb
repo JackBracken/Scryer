@@ -26,7 +26,7 @@ module SearchHelper
       end.html_safe
     end
 
-    (formatted_relationships + unbound_characters).join(', ')
+    (formatted_relationships + unbound_characters).join(', ').html_safe
   end
 
   def vote(thread_data)
