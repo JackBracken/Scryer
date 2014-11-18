@@ -72,6 +72,9 @@ gem 'faraday'
 gem 'faraday_middleware'
 gem 'rash'
 
+# Fast String.empty?
+gem 'fast_blank'
+
 # Profiling
 gem 'rack-mini-profiler'
 gem 'flamegraph'

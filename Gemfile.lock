@@ -106,6 +106,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
+    fast_blank (0.0.2)
     fast_stack (0.1.0)
       rake
       rake-compiler
@@ -255,6 +256,7 @@ DEPENDENCIES
   em-http-request (~> 1.0)
   faraday
   faraday_middleware
+  fast_blank
   flamegraph
   font-awesome-rails
   foreman
