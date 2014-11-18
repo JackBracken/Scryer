@@ -10,7 +10,7 @@ module Scryer
       'Favorites' => 'meta.favs',
       'Follows' => 'meta.follows',
       'DLP Review Score' => '_dlp',
-      #'Popular & Recent' => '_popular',
+      'Popular & Recent' => '_popular',
       #'Flesch Index (Reading level)' => '_flesch',
       'Chapters' => 'meta.chapters'
     }
