@@ -8,17 +8,18 @@
     <!-- TODO: graphs/stats -->
     <!-- TODO: Drilldown links / facets -->
 
-    <% content_for(:pagination) do %>
+    <% content_for(:pagination_info) do %>
         <%= page_entries_info @search_results.pagination %>
+    <% end %>
+    <% content_for(:pagination) do %>
+      <%= paginate @search_results.pagination %>
     <% end %>
 
     <div>
-      <%= yield :pagination %>
+      <%= yield :pagination_info %>
     </div>
     <div class="text-right">
-      <div>
-        <%= paginate @search_results.pagination %>
-      </div>
+      <%= yield :pagination %>
     </div>
 
     <div class="clearfix"></div>
@@ -27,6 +28,9 @@
 <%= (render :partial => 'story_result', :collection => @search_results.results) || (render :partial => 'empty') %>
 
 <% if has_results? %>
+    <div>
+      <%= yield :pagination_info %>
+    </div>
     <div class="text-right">
       <%= yield :pagination %>
     </div>
