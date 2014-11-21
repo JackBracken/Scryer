@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get 'search' => 'search#search', :as => :search
   get 'characters' => 'search#characters'
   get 'omni' => 'search#omni'
-  post 'pensieve/collect' => 'pensieve#collect'
-  match 'pensieve/collect' => 'pensieve#collect', :via => :options
+  post 'pensieve/bookmark' => 'pensieve#bookmark'
+  match 'pensieve/bookmark' => 'pensieve#bookmark', :via => :options
 
   get '/404', :to => 'errors#not_found'
   get '/422', :to => 'errors#unacceptable'

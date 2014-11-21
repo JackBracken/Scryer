@@ -3,7 +3,7 @@ class PensieveController < ApplicationController
   before_filter :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
-  def collect
+  def bookmark
     if is_page_load?
       ChapterLoadEvent.from_params(request, params).save!
     else
