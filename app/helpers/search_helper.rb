@@ -30,7 +30,7 @@ module SearchHelper
   end
 
   def vote(thread_data)
-    thread_data.votenum/thread_data.votetotal
+    thread_data.votenum.to_f/thread_data.votetotal
   end
 
   def has_results?
