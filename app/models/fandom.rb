@@ -48,7 +48,6 @@ class Fandom < ActiveRecord::Base
       end.sort_by do |f|
         f[:stories]
       end.reverse.keep_if do |f|
-        puts f[:id]
         f[:id] != fandom_id.to_i && f[:stories] > 0 # remove the current fandom from the list
       end.map do |f|
         Hashie::Mash.new f
