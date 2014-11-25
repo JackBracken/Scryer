@@ -14,6 +14,10 @@ class Fandom < ActiveRecord::Base
   has_many :characters
 
   def self.fandom_facets(fandom_id)
+    if fandom_id.is_a?(Array)
+      fandom_id = fandom_id.first
+    end
+
     Rails.cache.fetch("fandom_facets_#{fandom_id}", :expires_in => 6.hours) do
       buckets = $elasticsearch.search(
           index: 'ffncrossover_index',
