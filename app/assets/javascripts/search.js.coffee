@@ -6,8 +6,8 @@ $(->
   $("[name='search[category_optional][]']").chosen()
   $("[name='search[character_required][]']").chosen({max_selected_options: 4})
   $("[name='search[character_optional][]']").chosen()
-  $("[name='search[fandom]']").chosen().on('change', (e,p) -> handleFandom(e,p))
-  $("[name='search[crossovers][]']").chosen({allow_single_deselect: true}).on('change', (e,p) -> handleFandom(e,p))
+  $("[name='search[fandom]']").chosen().on('change', (e,p) -> updateFandom(e,p))
+  $("[name='search[crossovers][]']").chosen({allow_single_deselect: true}).on('change', (e,p) -> updateCrossover(e,p))
   $("[name='search[status]']").chosen({allow_single_deselect: true})
   $("[name='search[language]']").chosen({allow_single_deselect: true})
   $("[name='search[rating][]']").chosen()
@@ -26,7 +26,7 @@ $(->
 
     label_elem.text(label)
 
-  handleFandom = (e,p) ->
+  updateCrossover = (e,p) ->
     fandom = $("option:selected", $("[name='search[fandom]']"));
     crossover = $("option:selected", $("[name='search[crossovers][]']"));
 
@@ -49,6 +49,14 @@ $(->
       select2.trigger('chosen:updated');
     )
 
+  updateFandom = (e,p) ->
+    updateCrossover(e,p)
+
+    fandom = $("option:selected", $("[name='search[fandom]']"));
+    crossover = $("option:selected", $("[name='search[crossovers][]']"));
+
+    crossover_req = (crossover.map (c) -> "&fandom[]="+$(this).val()).toArray().join('')
+    
     $.getJSON("/crossovers?fandom[]="+fandom.val()+crossover_req, (data) ->
       select = $("[name='search[crossovers][]']")
       options = select.prop('options')
