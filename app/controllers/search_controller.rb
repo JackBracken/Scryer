@@ -45,5 +45,9 @@ private
 
     @fandoms = [@search['fandom'], @search['crossovers']].flatten.compact
     @search['crossovers'] = ([] << @search['crossovers']).flatten if @search['crossovers']
+
+    if !@fandoms || @fandoms.empty?
+      @fandoms = [224]
+    end
   end
 end
