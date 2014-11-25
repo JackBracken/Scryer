@@ -64,6 +64,7 @@ class Fandom < ActiveRecord::Base
   end
 
   def self.indexed_fandoms
-    where(:id => [7, 68, 1402, 1833, 224, 2489, 2746]).order(:name)
+    where(:id => [7, 68, 1402, 1833, 224, 2489, 2746, 1758,
+                  382, 4254, 13, 721, 2002, 9748, 2927, 1342, 9786]).order(:name)
   end
 end
