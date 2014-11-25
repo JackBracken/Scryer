@@ -7,7 +7,7 @@
         <select class="form-control"
                 name="search[fandom]"
                 id="search[fandom]">
-          <%= options_from_collection_for_select(Fandom.where(:id => 224), :id, :name, 224) %>
+          <%= options_from_collection_for_select(Fandom.indexed_fandoms, :id, :name, 224) %>
         </select>
       </div>
       <div class="form-group col-lg-6">

@@ -43,8 +43,9 @@ class Fandom < ActiveRecord::Base
         { id: f.id, name: f.name + " (#{story_count})", stories: story_count }
       end.sort_by do |f|
         f[:stories]
-      end.reverse.find_all do |f|
-        f[:id] != fandom_id # remove the current fandom from the list
+      end.reverse.keep_if do |f|
+        puts f[:id]
+        f[:id] != fandom_id.to_i && f[:stories] > 0 # remove the current fandom from the list
       end.map do |f|
         Hashie::Mash.new f
       end
@@ -57,5 +58,9 @@ class Fandom < ActiveRecord::Base
 
   def self.name_sentence(fandoms)
     where(:id => fandoms).order(:id).map { |f| f.name }.to_sentence
+  end
+
+  def self.indexed_fandoms
+    where(:id => [7, 68, 1402, 1833, 224, 2489, 2746]).order(:name)
   end
 end

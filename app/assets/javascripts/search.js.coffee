@@ -45,7 +45,21 @@ $(->
         options2[options.length] = new Option(v.name,v.id)
       )
 
-      $("[name='search[character_required][]']").trigger('chosen:updated');
-      $("[name='search[character_optional][]']").trigger('chosen:updated');
+      select.trigger('chosen:updated');
+      select2.trigger('chosen:updated');
+    )
+
+    $.getJSON("/crossovers?fandom[]="+fandom.val()+crossover_req, (data) ->
+      select = $("[name='search[crossovers][]']")
+      options = select.prop('options')
+      $('option', select).remove()
+
+      options[options.length] = new Option('', '')
+      options[options.length] = new Option('Any (*)', '-1')
+      $.each(data, (k,v) ->
+        options[options.length] = new Option(v.name,v.id)
+      )
+
+      select.trigger('chosen:updated');
     )
 )

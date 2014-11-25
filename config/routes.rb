@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about', :as => :about
   get 'search' => 'search#search', :as => :search
   get 'characters' => 'search#characters'
+  get 'crossovers' => 'search#crossovers'
   get 'omni' => 'search#omni'
   post 'pensieve/bookmark' => 'pensieve#bookmark'
   match 'pensieve/bookmark' => 'pensieve#bookmark', :via => :options

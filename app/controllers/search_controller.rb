@@ -19,6 +19,14 @@ class SearchController < ApplicationController
     @read_stories = PensieveEvent.where(story_id: (@search_results.results.map{|r| r.story_id})).map{|r2| r2.story_id}
   end
 
+  def crossovers
+    @fandom_list = Fandom.fandom_facets(params[:fandom])
+
+    respond_to do |format|
+      format.json { render json: @fandom_list }
+    end
+  end
+
   def characters
     @characters = Character.for_fandoms(params[:fandom])
 

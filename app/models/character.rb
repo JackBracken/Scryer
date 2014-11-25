@@ -17,8 +17,10 @@ class Character < ActiveRecord::Base
         c.readonly!
         c
       end
+    elsif fandoms && fandoms.size == 1
+      where(:fandom_id => fandoms.first)
     else
-      where(:fandom_id => 224)
+      []
     end
   end
 
