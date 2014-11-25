@@ -56,14 +56,14 @@ $(->
     crossover = $("option:selected", $("[name='search[crossovers][]']"));
 
     crossover_req = (crossover.map (c) -> "&fandom[]="+$(this).val()).toArray().join('')
-    
+
     $.getJSON("/crossovers?fandom[]="+fandom.val()+crossover_req, (data) ->
       select = $("[name='search[crossovers][]']")
       options = select.prop('options')
       $('option', select).remove()
 
       options[options.length] = new Option('', '')
-      options[options.length] = new Option('Any (*)', '-1')
+#      options[options.length] = new Option('Any (*)', '-1')
       $.each(data, (k,v) ->
         options[options.length] = new Option(v.name,v.id)
       )
