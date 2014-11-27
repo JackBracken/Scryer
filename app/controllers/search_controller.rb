@@ -16,7 +16,7 @@ class SearchController < ApplicationController
   def search
     @page = (params[:page] || '1').to_i
     @search_results = Search.perform_search(@search, @page, 25)
-    @read_stories = PensieveEvent.where(story_id: (@search_results.results.map{|r| r.story_id})).map{|r2| r2.story_id}
+    @read_stories = read_stories(@search_results)
   end
 
   def crossovers
@@ -36,6 +36,13 @@ class SearchController < ApplicationController
   end
 
 private
+  def read_stories(search_results)
+    result_story_ids = search_results.results.map{|r| r.story_id}
+
+    PensieveEvent
+      .where(story_id: result_story_ids)
+      .pluck(:story_id)
+  end
 
   def extract_search
     @search = params[:search]
