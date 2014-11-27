@@ -5,8 +5,8 @@ class SearchController < ApplicationController
   before_filter :extract_search
 
   def index
-    @fandom_list = Fandom.fandom_facets(224)
     @characters = Character.for_fandoms(@fandoms)
+    @fandom_facets = Fandom.fandom_facets(@fandoms)
   end
 
   def omni
@@ -20,10 +20,10 @@ class SearchController < ApplicationController
   end
 
   def crossovers
-    @fandom_list = Fandom.fandom_facets(params[:fandom])
+    @fandom_facets = Fandom.fandom_facets(params[:fandom])
 
     respond_to do |format|
-      format.json { render json: @fandom_list }
+      format.json { render json: @fandom_facets }
     end
   end
 

@@ -19,7 +19,7 @@
                 data-placeholder="Choose fandoms (if any)">
           <option value=""></option>
           <!--<option value="-1">Any (*)</option>-->
-          <%= options_from_collection_for_select(@fandom_list, :id, :name, @search[:crossovers]) %>
+          <%= options_from_collection_for_select(@fandom_facets, :id, :name, @search[:crossovers]) %>
         </select>
       </div>
     </div>
