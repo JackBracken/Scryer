@@ -40,4 +40,18 @@ module SearchHelper
   def included_text(excluded, item_type)
     "#{excluded ? 'Excluded' : 'Included'} #{item_type}"
   end
+
+  def updated_time(story_result)
+    content_tag(:span, {
+                       :class => "meta unbold #{grey_age(story_result.updated)}",
+                       :title => "Updated: #{Time.at(story_result.updated/1000)}",
+                       :'am-time-ago' => 'item.updated'}) do
+      timeago_tag Time.at(story_result.updated/1000), :limit => 2.years.ago
+    end.html_safe
+  end
+
+  def grey_age(ts)
+    # TODO
+    ""
+  end
 end

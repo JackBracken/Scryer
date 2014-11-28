@@ -1,50 +1,92 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <% if story_result.meta.thread_data %>
-        <a
-        href="https://forums.darklordpotter.net/showthread.php?t=<%= story_result.meta.thread_data.thread_id %>"
-        data-thread-id="<%= story_result.meta.thread_data.thread_id %>"
-        class="pull-right thread-link">
-        DLP <%= number_with_precision(vote(story_result.meta.thread_data), precision: 2) %> <i class="fa fa-star"></i></a>
-    <% end %>
-    <h3 class="panel-title">
+<!--<div class="panel panel-default">-->
+  <!--<div class="panel-heading">-->
+    <!--<% if story_result.meta.thread_data %>-->
+        <!--<a-->
+        <!--href="https://forums.darklordpotter.net/showthread.php?t=<%= story_result.meta.thread_data.thread_id %>"-->
+        <!--data-thread-id="<%= story_result.meta.thread_data.thread_id %>"-->
+        <!--class="pull-right thread-link">-->
+        <!--DLP <%= number_with_precision(vote(story_result.meta.thread_data), precision: 2) %> <i class="fa fa-star"></i></a>-->
+    <!--<% end %>-->
+    <!--<h3 class="panel-title">-->
+      <!--<a-->
+              <!--class="story-link"-->
+              <!--data-story="<%= story_result.title %>"-->
+              <!--target="_blank"-->
+              <!--href="https://www.fanfiction.net<%= story_result.url %>"><%= story_result.title %></a>-->
+      <!--by-->
+      <!--<a-->
+              <!--class="author-link"-->
+              <!--data-author="<%= story_result.author %>"-->
+              <!--target="_blank"-->
+              <!--href="https://www.fanfiction.net<%= story_result.author_url %>"><%= story_result.author %></a>-->
+    <!--</h3>-->
+  <!--</div>-->
+  <!--<div class="panel-body">-->
+    <!--<%= story_result.summary %>-->
+  <!--</div>-->
+  <!--<div class="panel-footer small">-->
+    <!--<% if @search[:crossovers] && @search[:crossovers].size > 1 %>-->
+        <!--<i class="fa fa-random"></i>-->
+        <!--<%= story_result.fandoms.find{|f| f.fandom_id != @search[:fandom].to_i}.fandom_name  %>-->
+        <!----->
+    <!--<% end %>-->
+
+  <!--</div>-->
+<!--</div>-->
+<div class="ui card">
+
+  <div class="content">
+    <div class="header">
       <a
               class="story-link"
-              data-story="<%= story_result.title %>"
+              data-story-id="<%= story_result.story_id %>"
+              data-story-title="<%= story_result.title %>"
               target="_blank"
               href="https://www.fanfiction.net<%= story_result.url %>"><%= story_result.title %></a>
-      by
-      <a
-              class="author-link"
-              data-author="<%= story_result.author %>"
-              target="_blank"
-              href="https://www.fanfiction.net<%= story_result.author_url %>"><%= story_result.author %></a>
-    </h3>
+      <div class="right floated created meta">
+        <%= updated_time(story_result) %>
+      </div>
+    </div>
+    <div class="meta">
+        <a
+                class="group"
+                data-author-id="<%= story_result.author_id %>"
+                data-author-name="<%= story_result.author %>"
+                target="_blank"
+                href="https://www.fanfiction.net<%= story_result.author_url %>"><%= story_result.author %></a>
+      <% if story_result.meta.thread_data %>
+      <div class="right floated created">
+          <a
+          href="https://forums.darklordpotter.net/showthread.php?t=<%= story_result.meta.thread_data.thread_id %>"
+          data-thread-id="<%= story_result.meta.thread_data.thread_id %>"
+          class="pull-right thread-link">
+          DLP <%= number_with_precision(vote(story_result.meta.thread_data), precision: 2) %> <i class="fa fa-star"></i></a>
+      </div>
+      <% end %>
+    </div>
+    <div class="description"><%= story_result.summary %></div>
   </div>
-  <div class="panel-body">
-    <%= story_result.summary %>
-  </div>
-  <div class="panel-footer small">
-    <% if @search[:crossovers] && @search[:crossovers].size > 1 %>
-        <i class="fa fa-random"></i>
-        <%= story_result.fandoms.find{|f| f.fandom_id != @search[:fandom].to_i}.fandom_name  %>
-        -
-    <% end %>
-    <span class="pull-right text-muted"
-          title="Updated: <%= Time.at(story_result.updated/1000) %>"
-          am-time-ago="item.updated"><%= timeago_tag Time.at(story_result.updated/1000), :limit => 2.years.ago %></span>
-    <strong title="Published: <%= Time.at(story_result.published/1000) %>">
-      <%= story_result.meta.status %>
-    </strong>
-    - <%= story_result.meta.rated %>
-    - <%= extract_names(story_result.meta.categories, '/') %>
-    - <%= show_characters(story_result.meta.characters, story_result.meta.relationships) %>
-    - <%= number_with_delimiter(story_result.meta.words) %> words
-    - <%= number_with_delimiter(story_result.meta.chapters) %> chapters
-    - <%= number_with_delimiter(story_result.meta.reviews) %> reviews
-    <span class="text-muted">
-      - <%= number_with_delimiter(story_result.meta.favs) %> favorites
-      - <%= number_with_delimiter(story_result.meta.follows) %> follows
-    </span>
+  <div class="extra content">
+    <!--<a class="right floated created">Arbitrary</a>-->
+    <!--<a class="friends">-->
+      <% if @search[:crossovers] && @search[:crossovers].size > 1 %>
+          <i class="fa fa-random"></i>
+          <%= story_result.fandoms.find{|f| f.fandom_id != @search[:fandom].to_i}.fandom_name  %>
+          -
+      <% end %>
+      <strong title="Published: <%= Time.at(story_result.published/1000) %>">
+        <%= story_result.meta.status %>
+      </strong>
+      - <%= story_result.meta.rated %>
+      - <%= extract_names(story_result.meta.categories, '/') %>
+      - <%= show_characters(story_result.meta.characters, story_result.meta.relationships) %>
+      - <%= number_with_delimiter(story_result.meta.words) %> words
+      - <%= number_with_delimiter(story_result.meta.chapters) %> chapters
+      - <%= number_with_delimiter(story_result.meta.reviews) %> reviews
+      <span class="text-muted">
+        - <%= number_with_delimiter(story_result.meta.favs) %> favorites
+        - <%= number_with_delimiter(story_result.meta.follows) %> follows
+      </span>
+    <!--</a>-->
   </div>
 </div>
