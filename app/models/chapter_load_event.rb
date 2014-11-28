@@ -25,9 +25,9 @@
 #
 
 class ChapterLoadEvent < PensieveEvent
-  def self.from_params(request, params)
+  def self.from_params(current_user, request, params)
     event = ChapterLoadEvent.new
-    ChapterLoadEvent.set_base_attributes(event, request, params)
+    ChapterLoadEvent.set_base_attributes(current_user, event, request, params)
     event.story_id = params['story']['id']
     event.story_name = params['story']['name']
     event.author_id = params['author']['id']

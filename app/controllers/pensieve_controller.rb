@@ -5,9 +5,9 @@ class PensieveController < ApplicationController
 
   def bookmark
     if is_page_load?
-      ChapterLoadEvent.from_params(request, params).save!
+      ChapterLoadEvent.from_params(current_user, request, params).save!
     else
-      ChapterExitEvent.from_params(request, params).save!
+      ChapterExitEvent.from_params(current_user, request, params).save!
     end
 
     render_200
