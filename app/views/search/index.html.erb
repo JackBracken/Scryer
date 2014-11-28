@@ -7,7 +7,7 @@
         <select class="form-control"
                 name="search[fandom]"
                 id="search[fandom]">
-          <%= options_from_collection_for_select(Fandom.indexed_fandoms, :id, :name, 224) %>
+          <%= options_from_collection_for_select(Fandom.indexed_fandoms, :id, :name, @search[:fandom] || '224') %>
         </select>
       </div>
       <div class="form-group col-lg-6">
@@ -17,8 +17,6 @@
                 name="search[crossovers][]"
                 id="search[crossovers][]"
                 data-placeholder="Choose fandoms (if any)">
-          <option value=""></option>
-          <!--<option value="-1">Any (*)</option>-->
           <%= options_from_collection_for_select(@fandom_facets, :id, :name, @search[:crossovers]) %>
         </select>
       </div>
@@ -105,12 +103,6 @@
         </label>
         <div class="input-group">
           <span class="input-group-addon">
-              <!--<input type="checkbox"-->
-                     <!--ng-model="character_optional_exclude"-->
-                     <!--ng-init="character_optional_exclude=true"-->
-                     <!--name="search[character_optional_exclude]"-->
-                     <!--id="search[character_optional_exclude]"-->
-                      <!--/> Exclude-->
             <%= check_box_tag 'search[character_optional_exclude]', 'true', @search[:character_optional_exclude] %> Exclude
           </span>
           <select multiple
