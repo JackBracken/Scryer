@@ -25,9 +25,9 @@
 #
 
 class ChapterExitEvent < PensieveEvent
-  def self.from_params(request, params)
+  def self.from_params(current_user, request, params)
     event = ChapterExitEvent.new
-    ChapterExitEvent.set_base_attributes(event, request, params)
+    ChapterExitEvent.set_base_attributes(current_user, event, request, params)
     event.page_start = Time.at(params['timing']['interact_start']/1000).utc.to_s(:db)
     event.page_exit = Time.at(params['timing']['end']/1000).utc.to_s(:db)
 
