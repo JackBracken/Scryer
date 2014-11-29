@@ -40,7 +40,7 @@
     - <%= extract_names(story_result.meta.categories, '/') %>
     - <%= show_characters(story_result.meta.characters, story_result.meta.relationships) %>
     - <%= number_with_delimiter(story_result.meta.words) %> words
-    - <%= number_with_delimiter(story_result.meta.chapters) %> chapters
+    - <%= pluralize(story_result.meta.chapters, 'chapter') %>
     - <%= number_with_delimiter(story_result.meta.reviews) %> reviews
     <span class="text-muted">
       - <%= number_with_delimiter(story_result.meta.favs) %> favorites
