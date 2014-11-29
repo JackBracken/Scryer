@@ -9,4 +9,9 @@
 #
 
 class Language < ActiveRecord::Base
+  def self.all_cached
+    Rails.cache.fetch("language_all", :expires_in => 6.hours) do
+      all()
+    end
+  end
 end

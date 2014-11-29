@@ -63,7 +63,7 @@
                 data-placeholder="Choose up to 2 required categories"
                 name="search[category_required][]"
                 id="search[category_required][]">
-          <%= options_from_collection_for_select(Category.all, :id, :name, @search[:category_required]) %>
+          <%= options_from_collection_for_select(Category.all_cached, :id, :name, @search[:category_required]) %>
         </select>
       </div>
       <div class="form-group col-lg-6">
@@ -79,7 +79,7 @@
                   data-placeholder="Choose some categories"
                   name="search[category_optional][]"
                   id="search[category_optional][]">
-            <%= options_from_collection_for_select(Category.all, :id, :name, @search[:category_optional]) %>
+            <%= options_from_collection_for_select(Category.all_cached, :id, :name, @search[:category_optional]) %>
           </select>
         </div>
       </div>
@@ -125,7 +125,7 @@
                 id="search[language]"
                 data-placeholder="Any Language">
           <option value=""></option>
-          <% Language.all.each do |l| %>
+          <% Language.all_cached.each do |l| %>
             <option value="<%= l.name.downcase %>"<%= ' selected' if l.name == "English"%>><%= l.name %></option>
           <% end %>
         </select>

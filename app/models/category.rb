@@ -9,4 +9,9 @@
 #
 
 class Category < ActiveRecord::Base
+  def self.all_cached
+      Rails.cache.fetch("category_all", :expires_in => 6.hours) do
+        all()
+      end
+    end
 end
