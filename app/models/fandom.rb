@@ -60,11 +60,15 @@ class Fandom < ActiveRecord::Base
   end
 
   def self.name_sentence(fandoms)
-    where(:id => fandoms).order(:id).map { |f| f.name }.to_sentence
+    Rails.cache.fetch("fandom_names_#{fandoms}", :expires_in => 6.hours) do
+      where(:id => fandoms).order(:id).map { |f| f.name }.to_sentence
+    end
   end
 
   def self.indexed_fandoms
-    where(:id => [7, 68, 1402, 1833, 224, 2489, 2746, 1758,
+    Rails.cache.fetch("fandom_indexed", :expires_in => 1.hours) do
+      where(:id => [7, 68, 1402, 1833, 224, 2489, 2746, 1758,
                   382, 4254, 13, 721, 2002, 9748, 2927, 1342, 9786]).order(:name)
+    end
   end
 end
