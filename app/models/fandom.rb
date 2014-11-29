@@ -61,7 +61,7 @@ class Fandom < ActiveRecord::Base
 
   def self.name_sentence(fandoms)
     Rails.cache.fetch("fandom_names_#{fandoms}", :expires_in => 6.hours) do
-      where(:id => fandoms).order(:id).map { |f| f.name }.to_sentence
+      where(:id => fandoms).order(:id).pluck(:name).to_sentence
     end
   end
 
