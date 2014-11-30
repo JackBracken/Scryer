@@ -31,6 +31,34 @@ class ChapterExitEvent < PensieveEvent
     event.page_start = Time.at(params['timing']['interact_start']/1000).utc.to_s(:db)
     event.page_exit = Time.at(params['timing']['end']/1000).utc.to_s(:db)
 
+    # extract story_id and chapter_id from url
+    event.story_id, event.chapter_id = parse_ffn_uri(event.url)
+
     event
+  end
+
+  def timing
+    load_raw_event
+
+    @json['timing']
+  end
+
+  def scrolls
+    load_raw_event
+
+    @json['timing']
+  end
+
+  private
+
+  def parse_ffn_uri(uri)
+    story_id, chapter_id, name = uri.match(/fanfiction\.net\/s\/([0-9]+)\/([0-9]+)\/(.*)/).try(:captures)
+    name.gsub!('-', ' ')
+
+    return story_id, chapter_id, name
+  end
+
+  def load_raw_event
+    @json ||= JSON.parse raw_event
   end
 end
