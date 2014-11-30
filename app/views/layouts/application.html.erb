@@ -16,6 +16,14 @@
 <%= render 'layouts/header' %>
 <%= render 'feedback/modal' %>
 <div class="container <%= controller_name %>">
+  <% if current_user && !current_user.confirmed? %>
+      <div class="alert alert-warning">
+        <i class="fa fa-exclamation-triangle"></i>
+
+        Your account's is currently email address unconfirmed. Your account will become inaccessible if not confirmed within 24 hours.
+      </div>
+  <% end %>
+
   <% [:notice, :error, :alert].each do |level| %>
     <% unless flash[level].blank? %>
       <div class="alert alert-<%= flash_class(level) %>">

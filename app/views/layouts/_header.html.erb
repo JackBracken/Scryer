@@ -25,6 +25,9 @@
             <!--<li class="<%= active_link('/searches') %>"><a href="/searches">Searches</a></li>-->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <% unless current_user.confirmed? %>
+                    <i class="fa fa-exclamation-triangle" title="Unconfirmed account"></i>
+                <% end %>
                 <%= current_user.username %><b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
