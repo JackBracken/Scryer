@@ -1,12 +1,10 @@
-class User < ActiveRecord::Base
+class DLPUser < ActiveRecord::Base
   self.table_name = 'user'
   #self.primary_key = :id
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable
+  # devise :database_authenticatable
   establish_connection "#{Rails.env}_dlp".to_sym
-
-  has_many :feedbacks
 
   def is_admin?
     try(:usergroupid) == 6
