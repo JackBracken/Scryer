@@ -21,6 +21,9 @@
         <i class="fa fa-exclamation-triangle"></i>
 
         Your account's is currently email address unconfirmed. Your account will become inaccessible if not confirmed within 24 hours.
+        <p>
+          <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
+        </p>
       </div>
   <% end %>
 
