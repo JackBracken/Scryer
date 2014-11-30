@@ -7,7 +7,7 @@ module Devise
         request.cookies.has_key?('dlpuserid') && request.cookies.has_key?('dlppassword')
       end
       def authenticate!
-        user = User.find_by_sql ["SELECT userid FROM user WHERE userid = ? AND MD5(CONCAT(password, ?)) = ?",
+        user = DLPUser.find_by_sql ["SELECT userid FROM user WHERE userid = ? AND MD5(CONCAT(password, ?)) = ?",
                                     request.cookies['dlpuserid'],
                                     ENV['VB_SALT'],
                                     request.cookies['dlppassword']]
