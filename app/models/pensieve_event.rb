@@ -36,4 +36,10 @@ class PensieveEvent < ActiveRecord::Base
     event.user_agent = request.user_agent
     event.raw_event = request.raw_post
   end
+
+  protected
+
+  def load_raw_event
+    @event ||= JSON.parse raw_event
+  end
 end

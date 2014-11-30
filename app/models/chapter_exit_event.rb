@@ -40,25 +40,21 @@ class ChapterExitEvent < PensieveEvent
   def timing
     load_raw_event
 
-    @json['timing']
+    @event['timing']
   end
 
   def scrolls
     load_raw_event
 
-    @json['timing']
+    @event['timing']
   end
 
   protected
 
-  def parse_ffn_uri(uri)
+  def self.parse_ffn_uri(uri)
     story_id, chapter_id, name = uri.match(/fanfiction\.net\/s\/([0-9]+)\/([0-9]+)\/(.*)/).try(:captures)
     name.gsub!('-', ' ')
 
     return story_id, chapter_id, name
-  end
-
-  def load_raw_event
-    @json ||= JSON.parse raw_event
   end
 end
