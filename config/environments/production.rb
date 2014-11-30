@@ -89,4 +89,8 @@ Rails.application.configure do
     user_name:            ENV['MAILGUN_USER'],
     password:             ENV['MAILGUN_PASS'],
     authentication:       :plain }
+
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
 end
