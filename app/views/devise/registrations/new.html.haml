@@ -1,0 +1,33 @@
+.page-header
+  %h1
+    Make a new account
+    %small
+      Aw yeah, yet another user account.
+
+%p.lead
+  You'll have an opportunity to link your DLP account later.
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  = devise_error_messages!
+
+  .form-group
+    = f.label :email
+    = f.email_field :email, :autofocus => true, class: 'form-control'
+
+  .form-group
+    = f.label :username
+    = f.text_field :username, class: 'form-control'
+
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: 'form-control'
+
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, class: 'form-control'
+
+  %button.btn.btn-default{:type => 'submit'}
+    Register
+
+%hr
+= render 'devise/shared/links'

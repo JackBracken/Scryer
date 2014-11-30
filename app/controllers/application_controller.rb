@@ -6,17 +6,24 @@ class ApplicationController < ActionController::Base
   before_filter :authorize_profiler
   before_filter :maintenance
 
-  def is_admin?
-    user_signed_in? && current_user.is_admin?
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def admin?
+    user_signed_in? && current_user.admin?
   end
 
-  private
+  protected
+
 
   def authorize_profiler
-    Rack::MiniProfiler.authorize_request if is_admin?
+    Rack::MiniProfiler.authorize_request if admin?
   end
 
   def maintenance
-    render 'shared/maintenance', :status => 503 if Rails.configuration.maintenance && !is_admin?
+    render 'shared/maintenance', :status => 503 if Rails.configuration.maintenance && !admin?
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :username
   end
 end
