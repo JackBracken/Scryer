@@ -49,7 +49,7 @@ class ChapterExitEvent < PensieveEvent
     @json['timing']
   end
 
-  private
+  protected
 
   def parse_ffn_uri(uri)
     story_id, chapter_id, name = uri.match(/fanfiction\.net\/s\/([0-9]+)\/([0-9]+)\/(.*)/).try(:captures)
