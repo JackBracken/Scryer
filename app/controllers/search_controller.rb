@@ -17,6 +17,12 @@ class SearchController < ApplicationController
     @page = (params[:page] || '1').to_i
     @search_results = Search.perform_search(@search, @page, 25)
     @read_stories = read_stories(@search_results)
+
+    record_search
+  end
+
+  def click
+    record_click(params[:event])
   end
 
   def crossovers
@@ -36,6 +42,21 @@ class SearchController < ApplicationController
   end
 
 private
+  def record_search
+    user = {ip: request.remote_ip}
+    if current_user
+      user.merge!({user: {id: current_user.id, username: current_user.username}})
+    end
+
+    Keen.publish_async('search', @search.merge(user))
+  rescue Keen::Error => e
+    Rollbar.report_exception(e)
+  end
+
+  def record_click(event)
+    Keen.publish('click', event)
+  end
+
   def read_stories(search_results)
     result_story_ids = search_results.results.map{|r| r.story_id}
 
