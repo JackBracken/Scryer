@@ -43,12 +43,12 @@ class SearchController < ApplicationController
 
 private
   def record_search
-    user = {ip: request.remote_ip}
+    metadata = {ip: request.remote_ip, page: @page}
     if current_user
-      user.merge!({user: {id: current_user.id, username: current_user.username}})
+      metadata.merge!({user: {id: current_user.id, username: current_user.username}})
     end
 
-    Keen.publish_async('search', @search.merge(user))
+    Keen.publish_async('search', @search.merge(metadata))
   rescue Keen::Error => e
     Rollbar.report_exception(e)
   end
