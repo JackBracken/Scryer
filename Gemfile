@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.7'
+gem 'rails', '4.2.0'
 
 gem 'jbuilder', '~> 2.0'
 
@@ -27,6 +27,7 @@ gem 'newrelic_rpm'
 
 # Feature flagging
 gem 'rollout'
+gem 'redis'
 
 # Keen.IO
 gem 'keen'
@@ -72,12 +73,15 @@ gem 'faraday'
 gem 'faraday_middleware'
 gem 'rash'
 
+gem 'jwt'
+
 # Fast String.empty?
 gem 'fast_blank'
 
 # Profiling
 gem 'rack-mini-profiler'
 gem 'flamegraph'
+gem 'stackprof', '~> 0.2.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -91,7 +95,7 @@ group :test do
 end
 
 group :development do
-  gem 'better_errors'
+  gem 'web-console', '~> 2.0'
   gem 'binding_of_caller' # better traces for better_errors
   gem 'spring'
   gem 'bullet'
