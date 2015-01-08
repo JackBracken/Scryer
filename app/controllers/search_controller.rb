@@ -14,6 +14,11 @@ class SearchController < ApplicationController
   end
 
   def search
+    if @search == {} || !@search
+      redirect_to root_path, :alert => 'You must provide a valid search.'
+      return
+    end
+
     @page = (params[:page] || '1').to_i
     @search_results = Search.perform_search(@search, @page, 25)
     @read_stories = read_stories(@search_results)
