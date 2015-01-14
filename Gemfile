@@ -23,6 +23,8 @@ gem 'lograge' # We don't need huge multi-line messages...
 # Exception Tracking
 gem 'rollbar', '~> 1.2.6'
 
+gem 'skylight'
+
 gem 'newrelic_rpm'
 
 # Feature flagging
@@ -88,10 +90,6 @@ gem 'stackprof', '~> 0.2.7'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-group :production do
-  gem 'skylight'
-end
 
 group :test do
   gem 'minitest-rails'
