@@ -89,6 +89,10 @@ gem 'stackprof', '~> 0.2.7'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :production do
+  gem 'skylight'
+end
+
 group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters', '>= 0.5.0'
